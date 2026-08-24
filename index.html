@@ -32,7 +32,6 @@
     }
 
     body {
-      margin: 0 auto;
       font-family: 'Sora', sans-serif;
       font-weight: 400;
     }
@@ -40,22 +39,24 @@
     .header-container {
       display: flex;
       justify-content: space-between;
+      font-size: 1rem;
     }
 
-    .personal-best-container {
+    .header-container .right {
       display: flex;
+      align-items: center;
+      justify-items: center;
     }
-
   </style>
 </head>
 <body>
   <div class="header-container">
-    <img src="assets/images/logo-small.svg">
-    <div class="personal-best-container">
+    <div class="left">
+      <img src="assets/images/logo-small.svg">
+    </div>
+    <div class="right">
       <img src="assets/images/icon-personal-best.svg">
-      <div class="personal-best">
-        Best:
-      </div> 
+      <div class="personal-best">Best:</div>
     </div>
   </div>
   Personal best: <!-- PB --> WPM
