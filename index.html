@@ -42,9 +42,10 @@
       display: flex;
       justify-content: space-between;
       font-size: 1rem;
+      margin-bottom: 1rem;
     }
 
-    .header-container .right {
+    .header-container > .right {
       display: flex;
       align-items: center;
       justify-items: center;
@@ -54,7 +55,7 @@
       display: inline
     }
 
-    .second-header-container .left {
+    .second-header-container > .left {
       display: flex;;
       justify-content: space-evenly;
       align-items: center;
@@ -64,11 +65,39 @@
       flex: 1;
       text-align: center;
       padding: 1rem;
+      min-height: 5vh;
     }
 
-    .accuracy {
-      border-left: 1px solid white; 
-      border-right: 1px solid white; 
+    .divider {
+      border: 0.5px solid grey;
+      height: 3rem;
+    }
+
+    .item .left {
+      color: grey;
+      padding-bottom: 0.5rem;
+    }
+
+    .item .right {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .personal-best {
+      display: flex;
+    }
+
+    .personal-best .left {
+      color: grey;
+    }
+
+    .personal-best .right {
+      font-weight: 700;
+    }
+
+    img {
+      max-height: 100%; 
+      width: auto
     }
   </style>
 </head>
@@ -79,7 +108,10 @@
     </div>
     <div class="right">
       <img src="assets/images/icon-personal-best.svg">
-      <div class="personal-best">Best: wpm</div>
+      <div class="personal-best">
+        <div class="left">Best: </div> 
+        <div class="right">92 WPM</div>
+      </div>
     </div>
   </div>
 
@@ -87,15 +119,17 @@
     <div class="left">
       <div class="item wpm">
         <div class="left">WPM: </div>
-        <div class="right">wpm</div>
+        <div class="right">0</div>
       </div>
+      <div class="divider"></div>
       <div class="item accuracy">
         <div class="left">Accuracy: </div>
-        <div class="right">temp</div>
+        <div class="right">100%</div>
       </div>
+      <div class="divider"></div>
       <div class="item time">
         <div class="left">Time: </div>
-        <div class="right">temp</div>
+        <div class="right">0:60</div>
       </div>
     </div>
     <div class=""right>
