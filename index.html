@@ -34,6 +34,8 @@
     body {
       font-family: 'Sora', sans-serif;
       font-weight: 400;
+      background-color: black;
+      color: white;
     }
 
     .header-container {
@@ -47,6 +49,27 @@
       align-items: center;
       justify-items: center;
     }
+
+    .second-header-container {
+      display: inline
+    }
+
+    .second-header-container .left {
+      display: flex;;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .item {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .accuracy {
+      border-left: 1px solid white; 
+      border-right: 1px solid white; 
+    }
   </style>
 </head>
 <body>
@@ -56,19 +79,32 @@
     </div>
     <div class="right">
       <img src="assets/images/icon-personal-best.svg">
-      <div class="personal-best">Best:</div>
+      <div class="personal-best">Best: wpm</div>
     </div>
   </div>
-  Personal best: <!-- PB --> WPM
 
-  WPM: <!-- WPM -->
-  Accuracy: <!-- Accuracy -->
-  Time: <!-- Time -->
-
-  Difficulty:
-  Easy
-  Medium
-  Hard
+  <div class="second-header-container">
+    <div class="left">
+      <div class="item wpm">
+        <div class="left">WPM: </div>
+        <div class="right">wpm</div>
+      </div>
+      <div class="item accuracy">
+        <div class="left">Accuracy: </div>
+        <div class="right">temp</div>
+      </div>
+      <div class="item time">
+        <div class="left">Time: </div>
+        <div class="right">temp</div>
+      </div>
+    </div>
+    <div class=""right>
+      Difficulty:
+      Easy
+      Medium
+      Hard
+    </div>
+  </div>
 
   Mode:
   Timed (60s)
