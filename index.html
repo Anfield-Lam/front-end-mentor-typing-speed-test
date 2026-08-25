@@ -32,6 +32,7 @@
     }
 
     body {
+      margin: 0;
       font-family: 'Sora', sans-serif;
       font-weight: 400;
       background-color: black;
@@ -42,17 +43,13 @@
       display: flex;
       justify-content: space-between;
       font-size: 1rem;
-      margin-bottom: 1rem;
+      padding: 0.5rem;
     }
 
     .header-container > .right {
       display: flex;
       align-items: center;
       justify-items: center;
-    }
-
-    .second-header-container {
-      display: inline
     }
 
     .second-header-container > .left {
@@ -99,6 +96,46 @@
       max-height: 100%; 
       width: auto
     }
+
+    .second-header-container > .right {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .second-header-container > .right > .left, 
+    .second-header-container > .right > .right {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid white;
+      border-radius: 5px;
+      margin: 0.5rem;
+      height: 3vh
+    }
+
+    .second-header-container > .right > .left select, 
+    .second-header-container > .right > .right select{
+      width: 100%;
+      background-color: black;
+      color: white;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .second-header-container > .right > .left select:focus, 
+    .second-header-container > .right > .right select:focus{
+      outline: none;
+    }
+
+    .second-header-container > .right > .left option, 
+    .second-header-container > .right > .right option {
+      text-align: center;
+    } 
+
+    option.first {
+      margin-top: 5rem;
+    }
   </style>
 </head>
 <body>
@@ -132,18 +169,24 @@
         <div class="right">0:60</div>
       </div>
     </div>
-    <div class=""right>
-      Difficulty:
-      Easy
-      Medium
-      Hard
+    <div class="right">
+      <label class="left" for="difficulty">
+        <select name="difficulty" id="difficulty">
+          <option class="first" value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </label>
+      <label class="right" for="mode">
+        <select name="mode" id="mode">
+          <option class="first" value="timed">Timed (60s)</option>
+          <option value="passage">Passage</option>
+        </select>
+      </label>
     </div>
   </div>
 
-  Mode:
-  Timed (60s)
-  Passage
-
+  <div class=""></div>
   <!-- Passage -->
 
   Start Typing Test
