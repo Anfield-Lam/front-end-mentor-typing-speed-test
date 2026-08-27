@@ -10,7 +10,7 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
+    .attribution { font-size: 0.6875rem; text-align: center;}
     .attribution a { color: hsl(228, 45%, 44%); }
 
     @font-face {
@@ -39,6 +39,7 @@
       --white: hsl(0, 0%, 100%);
       --lighter-black: hsl(0, 0%, 15%);
       --grey: hsl(240, 3%, 46%);
+      --blue: hsl(214, 100%, 55%);
     }
 
     body {
@@ -49,6 +50,7 @@
       color: var(--white);
       letter-spacing: 0.05em;
       user-select: none;
+      overflow: hidden;
     }
 
     .header-container {
@@ -68,6 +70,7 @@
       display: flex;;
       justify-content: space-evenly;
       align-items: center;
+      margin: 0 -0.5rem;
     }
 
     .item {
@@ -168,84 +171,126 @@
       display: flex;
       align-items: center;
       padding: 0.75rem;
+      cursor: pointer;
+    }
+
+    .border-line {
+      border-bottom: 0.5px solid var(--grey);
+      margin: 0.5rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      min-height: 75vh; /* full viewport height */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header {
+      min-height: 20vh;
+    }    
+
+    .start-screen {
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .start-button {
+      background-color: var(--blue);
+      padding: 1rem;
+      margin: 1.4rem 3.5rem;
+      border-radius: 15px;
+      cursor: pointer;
     }
 
   </style>
 </head>
 <body>
-  <div class="header-container">
-    <div class="left">
-      <img src="assets/images/logo-small.svg">
+  <div class="header">
+    <div class="header-container">
+      <div class="left">
+        <img src="assets/images/logo-small.svg">
+      </div>
+      <div class="right">
+        <img src="assets/images/icon-personal-best.svg">
+        <div class="personal-best">
+          <div class="left">Best: </div> 
+          <div class="right">92 WPM</div>
+        </div>
+      </div>
     </div>
-    <div class="right">
-      <img src="assets/images/icon-personal-best.svg">
-      <div class="personal-best">
-        <div class="left">Best: </div> 
-        <div class="right">92 WPM</div>
+
+    <div class="second-header-container">
+      <div class="left">
+        <div class="item wpm">
+          <div class="left">WPM: </div>
+          <div class="right">0</div>
+        </div>
+        <div class="divider"></div>
+        <div class="item accuracy">
+          <div class="left">Accuracy: </div>
+          <div class="right">100%</div>
+        </div>
+        <div class="divider"></div>
+        <div class="item time">
+          <div class="left">Time: </div>
+          <div class="right">0:60</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="difficulty">
+          <div class="difficulty-selected">Easy</div>
+          <img src="assets/images/icon-down-arrow.svg">
+        </div>
+        <div class="mode">
+          <div class="mode-selected">Timed (60s)</div>
+          <img src="assets/images/icon-down-arrow.svg">
+        </div>
+      </div>
+      <div class="options">
+        <div class="outer-difficulty-list hidden">
+          <div class="difficulty-list">
+            <div class="easy active">Easy</div>
+            <div class="medium">Medium</div>
+            <div class="hard">Hard</div>
+          </div>
+        </div>
+        <div class="outer-mode-list hidden">
+          <div class="mode-list">
+            <div class="timed active"><img><div>Timed (60s)</div></div>
+            <div class="passage"><img><div>Passage</div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="second-header-container">
-    <div class="left">
-      <div class="item wpm">
-        <div class="left">WPM: </div>
-        <div class="right">0</div>
-      </div>
-      <div class="divider"></div>
-      <div class="item accuracy">
-        <div class="left">Accuracy: </div>
-        <div class="right">100%</div>
-      </div>
-      <div class="divider"></div>
-      <div class="item time">
-        <div class="left">Time: </div>
-        <div class="right">0:60</div>
-      </div>
-    </div>
-    <div class="right">
-      <div class="difficulty">
-        <div class="difficulty-selected">Easy</div>
-        <img src="assets/images/icon-down-arrow.svg">
-      </div>
-      <div class="mode">
-        <div class="mode-selected">Timed (60s)</div>
-        <img src="assets/images/icon-down-arrow.svg">
-      </div>
-    </div>
-    <div class="options">
-      <div class="outer-difficulty-list hidden">
-        <div class="difficulty-list">
-          <div class="easy active">Easy</div>
-          <div class="medium">Medium</div>
-          <div class="hard">Hard</div>
-        </div>
-      </div>
-      <div class="outer-mode-list hidden">
-        <div class="mode-list">
-          <div class="timed active"><img><div>Timed (60s)</div></div>
-          <div class="passage"><img><div>Passage</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="border-line"></div>
 
-  <div class=""></div>
+  <div class="content">
+    <div class="start-screen">
+      <div class="start-button">Start Typing Test</div>
+      <div class="text-below-start-button">Or click the text and start typing</div>
+    </div>
+    <div class="passage"></div>
+  </div>
   <!-- Passage -->
 
-  Start Typing Test
-  Or click the text and start typing
+  
+  
 
   <!-- Test Complete Start -->
 
-  Test Complete!
-  Solid run. Keep pushing to beat your high score.
+  <!-- Test Complete! -->
+  <!-- Solid run. Keep pushing to beat your high score. -->
 
-  WPM: <!-- WPM -->
-  Accuracy: <!-- Accuracy -->
-  Characters: <!-- Correct/Incorrect -->
+   <!-- WPM:  WPM -->
+  <!-- Accuracy:  Accuracy -->
+  <!-- Characters:  Correct/Incorrect --> 
 
-  Go Again
+  <!-- Go Again -->
   
   <!-- Test Complete End -->
 
