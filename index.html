@@ -126,7 +126,7 @@
       border: 1px solid var(--white);
       border-radius: 8px;
       margin: 0.5rem;
-      height: 3.6vh;
+      min-height: 4.2vh;
       font-size: 1.1rem;
       font-weight: 400;
       cursor: pointer;
@@ -187,6 +187,14 @@
       justify-content: center;
     }
 
+    .passage-shown {
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--grey);
+      padding: 0.5rem;
+      line-height: 1.4;
+    }
+
     .header {
       min-height: 20vh;
     }    
@@ -215,6 +223,14 @@
 
     .personal-best .right {
       font-weight: 400;
+    }
+
+    .closed {
+      display: None;
+    }
+
+    .passage-container {
+      min-height: 75vh;
     }
 
   </style>
@@ -282,12 +298,15 @@
   <div class="border-line"></div>
 
   <div class="content">
-    <div class="start-screen hidden">
+    <div class="start-screen closed">
       <div class="start-button">Start Typing Test</div>
       <div class="text-below-start-button">Or click the text and start typing</div>
     </div>
-    <div class="passage-shown">
+    <div class="passage-container">
+      <div class="passage-shown">
 
+      </div>
+      <div class="restart-test-container"></div>
     </div>
   </div>
   <!-- Passage -->
