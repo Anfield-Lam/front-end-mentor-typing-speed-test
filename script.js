@@ -22,14 +22,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const difficultyListOptions = document.querySelector(".difficulty-list").querySelectorAll("*");
 	const difficultySelected = document.querySelector(".difficulty-selected")
-	const modeListOptions = document.querySelector(".mode-list").querySelectorAll("*")
+	const modeListOptions = document.querySelector(".mode-list").querySelectorAll("*");
 	const modeListSelected = document.querySelector(".mode-selected")
+	let data;
+
+	fetch('./data.json')   
+		.then(response => {
+			if (!response.ok) {
+				throw new Error("HTTP error " + response.status);
+			}
+			return response.json();
+		})
+		.then(jsonData => {
+			data = jsonData;
+		})
+		.catch(err => console.error("Error loading JSON:", err));
+
+	const passageShown = document.querySelector(".passage-shown");
 
 	difficultyListOptions.forEach((option) => {
 		option.addEventListener("click", () => {
 			options.forEach(item => {
 				if (option.classList.contains(item)) {
 					difficultySelected.textContent = shortforms[item];
+
+          const randomInt = getRandomInt(0, 9);
+					passageShown.textContent = data[item][randomInt]["text"];
 				}
 			})
 			difficultyList.classList.toggle("hidden");	
@@ -46,4 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			modeList.classList.toggle("hidden");
 		})
 	})
+
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
 });
