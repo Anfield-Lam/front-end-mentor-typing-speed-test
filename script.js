@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		"passage": "Passage"
 	}
 	let randomInt;
+	let remainingTime = 60;
 
 	difficulty.addEventListener("click", () => {
 		difficultyList.classList.toggle("hidden");
@@ -64,28 +65,39 @@ document.addEventListener("DOMContentLoaded", () => {
 			options.forEach(item => {
 				if (option.classList.contains(item)) {
 					modeListSelected.textContent = shortforms[item];
+					changeMode(item);
 				}
 			})
 			modeList.classList.toggle("hidden");
 		})
 	})
 
+	const Mode = document.querySelector(".time .right")
+
+	function changeMode(item) {
+		if (item === "timed") Mode.textContent = `0:${remainingTime}`;
+		else Mode.textContent = "-";
+	}
+
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
-	const startButton = document.querySelector(".start-button")
+	const content = document.querySelector(".content:not(.clicked)")
 	const startScreen = document.querySelector(".start-screen")
 	const passageContainer = document.querySelector(".passage-container")
 	const restartTestContainer = document.querySelector(".restart-test-container")
 	const paddingOnTopOfRestartButton = document.querySelector(".padding-on-top-of-restart-button")
 
-	startButton.addEventListener("click", () => {
+	content.addEventListener("click", () => {
 		startScreen.classList.add("closed")
 		passageContainer.classList.remove("blurred")
 		difficultyList.classList.add("hidden");
 		modeList.classList.add("hidden");
 		restartTestContainer.classList.remove("hidden");
 		paddingOnTopOfRestartButton.classList.add(".active")
+		content.classList.add("clicked")
 	})	
+
+
 });
