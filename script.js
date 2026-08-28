@@ -97,7 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		restartTestContainer.classList.remove("hidden");
 		paddingOnTopOfRestartButton.classList.add(".active")
 		content.classList.add("clicked")
-	})	
+	})
 
+	const restartButton = document.querySelector(".restart-button");
+	restartButton.addEventListener("click", () => {
+		location.reload();
+	})
 
 });
