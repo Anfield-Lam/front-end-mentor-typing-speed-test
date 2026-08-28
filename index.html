@@ -43,7 +43,7 @@
     }
 
     body {
-      margin: 0;
+      margin: 0 auto;
       font-family: 'Sora', sans-serif;
       font-weight: 400;
       background-color: var(--black);
@@ -54,10 +54,10 @@
     }
 
     .header-container {
+      margin: 0.5rem;
       display: flex;
       justify-content: space-between;
       font-size: 1rem;
-      padding: 0.5rem;
     }
 
     .header-container > .right {
@@ -240,6 +240,40 @@
       top: 14rem;
     }
 
+    .restart-test-container {
+      position: absolute;
+      display: flex;
+      bottom: 0;
+      height: 6rem;
+      font-size: 1.4rem;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--black);
+    }
+
+    .restart-test-container-border {
+      margin: 0.5rem;
+      height: 100%;
+      width: 100%;
+      border-top: 1px solid var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .restart-button {
+      display: flex;
+      background-color: var(--lighter-black);
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .restart-icon {
+      padding-left: 0.5rem; 
+    }
+
   </style>
 </head>
 <body>
@@ -311,9 +345,14 @@
     </div>
     <div class="passage-container blurred">
       <div class="passage-shown">
-
       </div>
-      <div class="restart-test-container"></div>
+    </div>
+    <div class="restart-test-container hidden">
+      <div class="restart-test-container-border">
+        <div class="restart-button">
+          Restart Test <img class="restart-icon" src="./assets/images/icon-restart.svg">
+        </div>
+      </div>
     </div>
   </div>
   <!-- Passage -->
