@@ -77,10 +77,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	const startButton = document.querySelector(".start-button")
 	const startScreen = document.querySelector(".start-screen")
 	const passageContainer = document.querySelector(".passage-container")
+	const restartTestContainer = document.querySelector(".restart-test-container")
+	const paddingOnTopOfRestartButton = document.querySelector(".padding-on-top-of-restart-button")
+
 	startButton.addEventListener("click", () => {
 		startScreen.classList.add("closed")
 		passageContainer.classList.remove("blurred")
 		difficultyList.classList.add("hidden");
 		modeList.classList.add("hidden");
+		restartTestContainer.classList.remove("hidden");
+		paddingOnTopOfRestartButton.classList.add(".active")
 	})	
 });

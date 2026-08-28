@@ -196,7 +196,7 @@
     }
 
     .passage-shown {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-weight: 400;
       color: var(--grey);
       padding: 0.5rem;
@@ -243,7 +243,7 @@
 
     .blurred {
       position: absolute;
-      filter: blur(10px);
+      filter: blur(6.7px);
       pointer-events: none;
       top: 14rem;
     }
@@ -252,19 +252,16 @@
       position: absolute;
       display: flex;
       bottom: 0;
-      height: 6rem;
+      height: 9rem;
       font-size: 1.4rem;
       width: 100%;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-end;;
       background-color: var(--black);
     }
 
     .restart-test-container-border {
-      margin: 0.5rem;
-      height: 100%;
-      width: 100%;
-      border-top: 1px solid var(--white);
+      height: 6rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -352,10 +349,13 @@
       <div class="text-below-start-button">Or click the text and start typing</div>
     </div>
     <div class="passage-container blurred">
-      <div class="passage-shown">
+      <div class="padding-on-top-of-restart-button">
+        <div class="passage-shown">
+        </div>
       </div>
     </div>
     <div class="restart-test-container hidden">
+      <div class="border-line"></div>
       <div class="restart-test-container-border">
         <div class="restart-button">
           Restart Test <img class="restart-icon" src="./assets/images/icon-restart.svg">
