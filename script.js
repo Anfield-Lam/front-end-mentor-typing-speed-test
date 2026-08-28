@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		"timed": "Timed (60s)",
 		"passage": "Passage"
 	}
+	let randomInt;
 
 	difficulty.addEventListener("click", () => {
 		difficultyList.classList.toggle("hidden");
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		})
 		.then(jsonData => {
 			data = jsonData;
+			generatePassage("easy")
 		})
 		.catch(err => console.error("Error loading JSON:", err));
 
@@ -45,14 +47,17 @@ document.addEventListener("DOMContentLoaded", () => {
 			options.forEach(item => {
 				if (option.classList.contains(item)) {
 					difficultySelected.textContent = shortforms[item];
-
-          const randomInt = getRandomInt(0, 9);
-					passageShown.textContent = data[item][randomInt]["text"];
+          generatePassage(item);
 				}
 			})
 			difficultyList.classList.toggle("hidden");	
 		})
 	})
+
+	function generatePassage(item) {
+		randomInt = getRandomInt(0, 9);
+		passageShown.textContent = data[item][randomInt]["text"];
+	}
 
 	modeListOptions.forEach((option) => {
 		option.addEventListener("click", () => {
@@ -68,4 +73,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
+
+	const startButton = document.querySelector(".start-button")
+	const startScreen = document.querySelector(".start-screen")
+	const passageContainer = document.querySelector(".passage-container")
+	startButton.addEventListener("click", () => {
+		startScreen.classList.add("closed")
+		passageContainer.classList.remove("blurred")
+		difficultyList.classList.add("hidden");
+		modeList.classList.add("hidden");
+	})	
 });
