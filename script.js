@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 	let randomInt;
 	let remainingTime = 60;
+	let currentTextPassage;
+	let testStarted = false;
 
 	difficulty.addEventListener("click", () => {
 		OuterDifficultyList.classList.toggle("hidden");
@@ -61,7 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function generatePassage(item) {
 		randomInt = getRandomInt(0, 9);
-		passageShown.textContent = data[item][randomInt]["text"];
+		currentTextPassage = data[item][randomInt]["text"];
+		passageShown.textContent = currentTextPassage;
 	}
 
 	modeList.forEach((option) => {
@@ -99,6 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const timed = document.querySelector(".timed");
 
 	content.addEventListener("click", () => {
+		if (testStarted === true) return
+		testStarted = true;
 		startScreen.classList.add("closed")
 		passageContainer.classList.remove("blurred")
 		OuterDifficultyList.classList.add("hidden");
@@ -107,17 +112,45 @@ document.addEventListener("DOMContentLoaded", () => {
 		paddingOnTopOfRestartButton.classList.add(".active")
 		content.classList.add("clicked")
 		if (timed.classList.contains("active")) startTimer();
+		startTyping();
 	})
 
 	function startTimer() {
 		const timer = setInterval(function() {
-			remainingTime--;
+			remainingTime --;
 			Mode.textContent = `0:${remainingTime}`;
 			if (remainingTime <= 0) {
 				clearInterval(timer);
 				location.reload(); //temp
 			}
 		}, 1000)
+	}
+
+	function startTyping() {
+		initializePassage()
+		let curr = 0;
+		updateCurr(curr);
+		document.addEventListener("keydown", (e) => {
+			curr ++;
+			updateCurr(curr);
+		})
+	}
+
+	function initializePassage() {
+		passageShown.textContent = ""
+		currentTextPassage.split("").forEach((letter) => {
+			const span = document.createElement("span");
+			span.textContent = letter;
+			passageShown.appendChild(span)
+		})
+	}
+
+	function updateCurr(curr) {
+		const spans = document.querySelectorAll("span")
+		spans.forEach((item, index) => {
+			item.classList.remove("curr")
+			if (curr == index) item.classList.add("curr")
+		})
 	}
 
 	const restartButton = document.querySelector(".restart-button");
