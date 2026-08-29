@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {  
 	const difficulty = document.querySelector(".difficulty");
 	const mode = document.querySelector(".mode");
-	const difficultyList = document.querySelector(".outer-difficulty-list");
-	const modeList = document.querySelector(".outer-mode-list");
+	const OuterDifficultyList = document.querySelector(".outer-difficulty-list");
+	const OuterModeList = document.querySelector(".outer-mode-list");
 	const options = ["easy", "medium", "hard", "timed", "passage"];
 	const shortforms = {
 		"easy": "Easy",
@@ -15,16 +15,16 @@ document.addEventListener("DOMContentLoaded", () => {
 	let remainingTime = 60;
 
 	difficulty.addEventListener("click", () => {
-		difficultyList.classList.toggle("hidden");
+		OuterDifficultyList.classList.toggle("hidden");
 	})
 
 	mode.addEventListener("click", () => {
-		modeList.classList.toggle("hidden");
+		OuterModeList.classList.toggle("hidden");
 	})
 
-	const difficultyListOptions = document.querySelector(".difficulty-list").querySelectorAll("*");
+	const difficultyList = document.querySelector(".difficulty-list").querySelectorAll("*");
 	const difficultySelected = document.querySelector(".difficulty-selected")
-	const modeListOptions = document.querySelector(".mode-list").querySelectorAll("*");
+	const modeList = document.querySelector(".mode-list").querySelectorAll("*");
 	const modeListSelected = document.querySelector(".mode-selected")
 	let data;
 
@@ -43,15 +43,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const passageShown = document.querySelector(".passage-shown");
 
-	difficultyListOptions.forEach((option) => {
+	difficultyList.forEach((option) => {
 		option.addEventListener("click", () => {
+			difficultyList.forEach((item) => {
+				item.classList.remove("active")
+			})
+			option.classList.add("active")
 			options.forEach(item => {
 				if (option.classList.contains(item)) {
 					difficultySelected.textContent = shortforms[item];
           generatePassage(item);
 				}
 			})
-			difficultyList.classList.toggle("hidden");	
+			OuterDifficultyList.classList.toggle("hidden");	
 		})
 	})
 
@@ -60,15 +64,19 @@ document.addEventListener("DOMContentLoaded", () => {
 		passageShown.textContent = data[item][randomInt]["text"];
 	}
 
-	modeListOptions.forEach((option) => {
+	modeList.forEach((option) => {
 		option.addEventListener("click", () => {
+			modeList.forEach((item) => {
+				item.classList.remove("active")
+			})
+			option.classList.add("active")
 			options.forEach(item => {
 				if (option.classList.contains(item)) {
 					modeListSelected.textContent = shortforms[item];
 					changeMode(item);
 				}
 			})
-			modeList.classList.toggle("hidden");
+			OuterModeList.classList.toggle("hidden");
 		})
 	})
 
@@ -88,16 +96,29 @@ document.addEventListener("DOMContentLoaded", () => {
 	const passageContainer = document.querySelector(".passage-container")
 	const restartTestContainer = document.querySelector(".restart-test-container")
 	const paddingOnTopOfRestartButton = document.querySelector(".padding-on-top-of-restart-button")
+	const timed = document.querySelector(".timed");
 
 	content.addEventListener("click", () => {
 		startScreen.classList.add("closed")
 		passageContainer.classList.remove("blurred")
-		difficultyList.classList.add("hidden");
-		modeList.classList.add("hidden");
+		OuterDifficultyList.classList.add("hidden");
+		OuterModeList.classList.add("hidden");
 		restartTestContainer.classList.remove("hidden");
 		paddingOnTopOfRestartButton.classList.add(".active")
 		content.classList.add("clicked")
+		if (timed.classList.contains("active")) startTimer();
 	})
+
+	function startTimer() {
+		const timer = setInterval(function() {
+			remainingTime--;
+			Mode.textContent = `0:${remainingTime}`;
+			if (remainingTime <= 0) {
+				clearInterval(timer);
+				location.reload(); //temp
+			}
+		}, 1000)
+	}
 
 	const restartButton = document.querySelector(".restart-button");
 	restartButton.addEventListener("click", () => {
