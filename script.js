@@ -138,6 +138,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		const skipLineIndexes = CheckForLineSkips();
 		skipLineIndexes.splice(0, 3)
 		document.addEventListener("keydown", (e) => {
+			const allowed = /^[a-zA-Z]$/;
+			if (
+				!(allowed.test(e.key) || 
+				e.key === " " || 
+				e.key === "," || 
+				e.key === "." ||  
+				e.key === "Backspace" ||
+			  e.key === "\"" ||
+				e.key === ":")
+			) return ;
 			if (e.key === "Backspace" && curr > 0) {
 				curr --;
 				if (skipLineIndexes.includes(curr + 1)) passageChangePosition(-1);
@@ -148,8 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				curr ++;
 				if (skipLineIndexes.includes(curr)) passageChangePosition(1);
 			}
-			updateCurr(curr);
-			
+			updateCurr(curr);	
 		})
 	}
 
