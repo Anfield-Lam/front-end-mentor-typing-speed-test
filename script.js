@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let remainingTime = 60;
 	let currentTextPassage;
 	let testStarted = false;
+	let lineSkipHeight = 0;
 
 	difficulty.addEventListener("click", () => {
 		OuterDifficultyList.classList.toggle("hidden");
@@ -134,11 +135,35 @@ document.addEventListener("DOMContentLoaded", () => {
 		initializePassage()
 		let curr = 0;
 		updateCurr(curr);
+		const skipLineIndexes = CheckForLineSkips();
+		skipLineIndexes.splice(0, 2)
 		document.addEventListener("keydown", (e) => {
 			if (e.key === "Backspace" && curr > 0) curr --;
 			else if (e.key !== "Backspace" && curr < currentTextPassage.length - 1) curr ++;
 			updateCurr(curr);
+			if (skipLineIndexes.includes(curr)) passageChangePosition();
 		})
+	}
+
+	function passageChangePosition() {
+		lineSkipHeight += 3.1
+		document.documentElement.style.setProperty("--line-skip-padding", `${lineSkipHeight}rem`);
+	}
+
+	function CheckForLineSkips() {
+		const spans = document.querySelectorAll("span");
+		const List = []
+
+		spans.forEach((span, index) => {
+			if (index > 0) {
+				const prev = spans[index - 1];
+				const currTop = span.getBoundingClientRect().top;
+				const prevTop = prev.getBoundingClientRect().top;
+
+				if (currTop > prevTop) List.push(index)
+			}
+		});
+		return List;
 	}
 
 	function initializePassage() {
@@ -162,5 +187,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	restartButton.addEventListener("click", () => {
 		location.reload();
 	})
-
 });
