@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			) return ;
 			if (e.key === "Backspace" && curr > 0) {
 				curr --;
+				revertKeyPress(curr);
 				if (skipLineIndexes.includes(curr + 1)) passageChangePosition(-1);
 			}
 			else if (e.key !== "Backspace" && curr < currentTextPassage.length - 1) {
@@ -165,6 +166,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	function passageChangePosition(num) {
 		lineSkipHeight += 3.1 * num
 		document.documentElement.style.setProperty("--line-skip-padding", `${lineSkipHeight}rem`);
+	}
+
+	function revertKeyPress(num) {
+		let key = document.querySelector(`.num-${num}`)
+		key.classList.remove("correct")	
+		key.classList.remove("wrong")	
 	}
 
 	function correctKey(num) {
