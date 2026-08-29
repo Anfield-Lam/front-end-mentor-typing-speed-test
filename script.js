@@ -47,16 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	difficultyList.forEach((option) => {
 		option.addEventListener("click", () => {
-			difficultyList.forEach((item) => {
-				item.classList.remove("active")
-			})
-			option.classList.add("active")
-			options.forEach(item => {
-				if (option.classList.contains(item)) {
-					difficultySelected.textContent = shortforms[item];
-          generatePassage(item);
-				}
-			})
+			if (!testStarted) {
+				difficultyList.forEach((item) => {
+					item.classList.remove("active")
+				})
+				option.classList.add("active")
+				options.forEach(item => {
+					if (option.classList.contains(item)) {
+						difficultySelected.textContent = shortforms[item];
+						generatePassage(item);
+					}
+				})
+			}
 			OuterDifficultyList.classList.toggle("hidden");	
 		})
 	})
@@ -69,16 +71,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	modeList.forEach((option) => {
 		option.addEventListener("click", () => {
-			modeList.forEach((item) => {
-				item.classList.remove("active")
-			})
-			option.classList.add("active")
-			options.forEach(item => {
-				if (option.classList.contains(item)) {
-					modeListSelected.textContent = shortforms[item];
-					changeMode(item);
-				}
-			})
+			if (!testStarted) {
+				modeList.forEach((item) => {
+					item.classList.remove("active")
+				})
+				option.classList.add("active")
+				options.forEach(item => {
+					if (option.classList.contains(item)) {
+						modeListSelected.textContent = shortforms[item];
+						changeMode(item);
+					}
+				})
+			}
 			OuterModeList.classList.toggle("hidden");
 		})
 	})
@@ -131,7 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		let curr = 0;
 		updateCurr(curr);
 		document.addEventListener("keydown", (e) => {
-			curr ++;
+			if (e.key === "Backspace" && curr > 0) curr --;
+			else if (e.key !== "Backspace" && curr < currentTextPassage.length - 1) curr ++;
 			updateCurr(curr);
 		})
 	}
