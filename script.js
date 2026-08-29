@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	let currentTextPassage;
 	let testStarted = false;
 	let lineSkipHeight = 0;
+	let curr = 0;
+	let errors = 0;
 
 	difficulty.addEventListener("click", () => {
 		OuterDifficultyList.classList.toggle("hidden");
@@ -105,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const restartTestContainer = document.querySelector(".restart-test-container")
 	const paddingOnTopOfRestartButton = document.querySelector(".padding-on-top-of-restart-button")
 	const timed = document.querySelector(".timed");
+	const wpm = document.querySelector(".wpm .right");
 
 	content.addEventListener("click", () => {
 		if (testStarted === true) return
@@ -120,6 +123,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		startTyping();
 	})
 
+	function updateWpm(time) {
+		let wordsPerMinute = (curr + 1) / 5 / (60 - time) * 60
+		wpm.textContent = Math.round(wordsPerMinute)
+	}
+
 	function startTimer() {
 		const timer = setInterval(function() {
 			remainingTime --;
@@ -128,12 +136,12 @@ document.addEventListener("DOMContentLoaded", () => {
 				clearInterval(timer);
 				location.reload(); //temp
 			}
+			updateWpm(remainingTime)
 		}, 1000)
 	}
 
 	function startTyping() {
 		initializePassage()
-		let curr = 0;
 		updateCurr(curr);
 		const skipLineIndexes = CheckForLineSkips();
 		skipLineIndexes.splice(0, 3)
