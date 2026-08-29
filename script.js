@@ -143,6 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (skipLineIndexes.includes(curr + 1)) passageChangePosition(-1);
 			}
 			else if (e.key !== "Backspace" && curr < currentTextPassage.length - 1) {
+				if (e.key === currentTextPassage[curr]) correctKey(curr);
+				else wrongKey(curr);
 				curr ++;
 				if (skipLineIndexes.includes(curr)) passageChangePosition(1);
 			}
@@ -155,6 +157,17 @@ document.addEventListener("DOMContentLoaded", () => {
 		lineSkipHeight += 3.1 * num
 		document.documentElement.style.setProperty("--line-skip-padding", `${lineSkipHeight}rem`);
 	}
+
+	function correctKey(num) {
+		let key = document.querySelector(`.num-${num}`)
+		key.classList.add("correct")				
+	}
+
+	function wrongKey(num) {
+		let key = document.querySelector(`.num-${num}`)
+		key.classList.add("wrong")				
+	}
+
 
 	function CheckForLineSkips() {
 		const spans = document.querySelectorAll("span");
@@ -174,10 +187,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function initializePassage() {
 		passageShown.textContent = ""
+		let pointer = 0;
 		currentTextPassage.split("").forEach((letter) => {
 			const span = document.createElement("span");
 			span.textContent = letter;
+			span.classList.add(`num-${pointer}`)
 			passageShown.appendChild(span)
+			pointer ++;
 		})
 	}
 
