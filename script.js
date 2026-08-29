@@ -136,17 +136,23 @@ document.addEventListener("DOMContentLoaded", () => {
 		let curr = 0;
 		updateCurr(curr);
 		const skipLineIndexes = CheckForLineSkips();
-		skipLineIndexes.splice(0, 2)
+		skipLineIndexes.splice(0, 3)
 		document.addEventListener("keydown", (e) => {
-			if (e.key === "Backspace" && curr > 0) curr --;
-			else if (e.key !== "Backspace" && curr < currentTextPassage.length - 1) curr ++;
+			if (e.key === "Backspace" && curr > 0) {
+				curr --;
+				if (skipLineIndexes.includes(curr + 1)) passageChangePosition(-1);
+			}
+			else if (e.key !== "Backspace" && curr < currentTextPassage.length - 1) {
+				curr ++;
+				if (skipLineIndexes.includes(curr)) passageChangePosition(1);
+			}
 			updateCurr(curr);
-			if (skipLineIndexes.includes(curr)) passageChangePosition();
+			
 		})
 	}
 
-	function passageChangePosition() {
-		lineSkipHeight += 3.1
+	function passageChangePosition(num) {
+		lineSkipHeight += 3.1 * num
 		document.documentElement.style.setProperty("--line-skip-padding", `${lineSkipHeight}rem`);
 	}
 
