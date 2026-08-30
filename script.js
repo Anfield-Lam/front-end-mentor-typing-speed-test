@@ -138,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				location.reload(); //temp
 			}
 			updateWpm(remainingTime)
+			Mode.classList.add("not-60")
 		}, 1000)
 	}
 
