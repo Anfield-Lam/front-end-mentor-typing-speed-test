@@ -125,7 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
 
 	function updateWpm(time) {
-		let wordsPerMinute = ((curr + 1) / 5 - errors)/ (60 - time) * 60
+		let wordsPerMinute = ((curr + 1) / 5 - errors) / (60 - time) * 60;
+		if (wordsPerMinute < 0) wordsPerMinute = 0
 		wpm.textContent = Math.round(wordsPerMinute)
 	}
 
