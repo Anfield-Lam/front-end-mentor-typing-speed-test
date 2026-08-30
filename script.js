@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let curr = 0;
 	let errors = 0;
 	let percentage;
+	let firstWord = false;
 
 	difficulty.addEventListener("click", () => {
 		OuterDifficultyList.classList.toggle("hidden");
@@ -138,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				clearInterval(timer);
 				location.reload(); //temp
 			}
-			updateWpm(remainingTime)
+			if (firstWord) updateWpm(remainingTime);
 			Mode.classList.add("not-60")
 		}, 1000)
 	}
@@ -166,7 +167,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (skipLineIndexes.includes(curr + 1)) passageChangePosition(-1);
 			}
 			else if (e.key !== "Backspace" && curr < currentTextPassage.length) {
-				if (e.key === currentTextPassage[curr]) correctKey(curr);
+				if (e.key === currentTextPassage[curr]) {
+					correctKey(curr);
+					if (e.key === " ") firstWord = true;
+				}
 				else wrongKey(curr);
 				curr ++;
 				if (skipLineIndexes.includes(curr)) passageChangePosition(1);
