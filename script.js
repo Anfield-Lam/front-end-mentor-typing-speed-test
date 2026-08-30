@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let lineSkipHeight = 0;
 	let curr = 0;
 	let errors = 0;
+	let percentage;
 
 	difficulty.addEventListener("click", () => {
 		OuterDifficultyList.classList.toggle("hidden");
@@ -124,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
 
 	function updateWpm(time) {
-		let wordsPerMinute = (curr + 1) / 5 / (60 - time) * 60
+		let wordsPerMinute = ((curr + 1) / 5 - errors)/ (60 - time) * 60
 		wpm.textContent = Math.round(wordsPerMinute)
 	}
 
@@ -154,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				e.key === "." ||  
 				e.key === "Backspace" ||
 			  e.key === "\"" ||
+				e.key === "-" ||
 				e.key === ":")
 			) return ;
 			if (e.key === "Backspace" && curr > 0) {
@@ -167,8 +169,20 @@ document.addEventListener("DOMContentLoaded", () => {
 				curr ++;
 				if (skipLineIndexes.includes(curr)) passageChangePosition(1);
 			}
+			calculateAccuracy();
 			updateCurr(curr);	
 		})
+	}
+
+	const accuracy = document.querySelector(".accuracy .right")
+
+	function calculateAccuracy() {
+		if (!curr) {percentage = 100;}
+		else {percentage = (curr - errors) / curr * 100;}
+		accuracy.textContent = `${Math.round(percentage)}%`
+
+		if (percentage === 100) accuracy.classList.add("flawless");
+		else accuracy.classList.remove("flawless")
 	}
 
 	function passageChangePosition(num) {
@@ -178,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function revertKeyPress(num) {
 		let key = document.querySelector(`.num-${num}`)
+		if (key.classList.contains("wrong")) errors -= 1;
 		key.classList.remove("correct")	
 		key.classList.remove("wrong")	
 	}
@@ -188,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function wrongKey(num) {
+		errors ++;
 		let key = document.querySelector(`.num-${num}`)
 		key.classList.add("wrong")				
 	}
