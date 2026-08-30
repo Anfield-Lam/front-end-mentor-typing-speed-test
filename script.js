@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				revertKeyPress(curr);
 				if (skipLineIndexes.includes(curr + 1)) passageChangePosition(-1);
 			}
-			else if (e.key !== "Backspace" && curr < currentTextPassage.length - 1) {
+			else if (e.key !== "Backspace" && curr < currentTextPassage.length) {
 				if (e.key === currentTextPassage[curr]) correctKey(curr);
 				else wrongKey(curr);
 				curr ++;

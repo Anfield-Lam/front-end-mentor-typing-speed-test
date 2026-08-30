@@ -58,6 +58,15 @@
       margin: 0.85rem;
     }
 
+    .black-overlay {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: var(--black);
+      z-index: 10;
+    }
+
     .main-container {
       width: 100%;
     }
@@ -270,6 +279,7 @@
 
     .passage-container {
       position: absolute;
+      padding: 0.5rem;
       top: calc(14rem - var(--line-skip-padding));
       min-height: 75vh;
       z-index: 0;
@@ -343,95 +353,96 @@
   </style>
 </head>
 <body>
-  <div class="main-container">
-    <div class="header">
-      <div class="overlay">
-        <div class="header-container">
-          <div class="left">
-            <img src="assets/images/logo-small.svg">
-          </div>
-          <div class="right">
-            <img class="trophy" src="assets/images/icon-personal-best.svg">
-            <div class="personal-best">
-              <div class="left">Best: </div> 
-              <div class="right">92 WPM</div>
+  <div class="black-overlay"> 
+    <div class="main-container">
+      <div class="header">
+        <div class="overlay">
+          <div class="header-container">
+            <div class="left">
+              <img src="assets/images/logo-small.svg">
             </div>
-          </div>
-        </div>
-
-        <div class="second-header-container">
-          <div class="left">
-            <div class="item wpm">
-              <div class="left">WPM: </div>
-              <div class="right">0</div>
-            </div>
-            <div class="divider"></div>
-            <div class="item accuracy">
-              <div class="left">Accuracy: </div>
-              <div class="right flawless">100%</div>
-            </div>
-            <div class="divider"></div>
-            <div class="item time">
-              <div class="left">Time: </div>
-              <div class="right">0:60</div>
-            </div>
-          </div>
-          <div class="right">
-            <div class="difficulty">
-              <div class="difficulty-selected">Easy</div>
-              <img src="assets/images/icon-down-arrow.svg">
-            </div>
-            <div class="mode">
-              <div class="mode-selected">Timed (60s)</div>
-              <img src="assets/images/icon-down-arrow.svg">
-            </div>
-          </div>
-          <div class="options">
-            <div class="outer-difficulty-list hidden">
-              <div class="difficulty-list">
-                <div class="easy active">Easy</div>
-                <div class="medium">Medium</div>
-                <div class="hard">Hard</div>
-              </div>
-            </div>
-            <div class="outer-mode-list hidden">
-              <div class="mode-list">
-                <div class="timed active">Timed (60s)</div>
-                <div class="passage">Passage</div>
+            <div class="right">
+              <img class="trophy" src="assets/images/icon-personal-best.svg">
+              <div class="personal-best">
+                <div class="left">Best: </div> 
+                <div class="right">92 WPM</div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="border-line-container">
-          <div class="border-line"></div>
-        </div>
-      </div>
-    </div>
 
-    <div class="content">
-      <div class="start-screen">
-        <div class="start-button">Start Typing Test</div>
-        <div class="text-below-start-button">Or click the text and start typing</div>
+          <div class="second-header-container">
+            <div class="left">
+              <div class="item wpm">
+                <div class="left">WPM: </div>
+                <div class="right">0</div>
+              </div>
+              <div class="divider"></div>
+              <div class="item accuracy">
+                <div class="left">Accuracy: </div>
+                <div class="right flawless">100%</div>
+              </div>
+              <div class="divider"></div>
+              <div class="item time">
+                <div class="left">Time: </div>
+                <div class="right">0:60</div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="difficulty">
+                <div class="difficulty-selected">Easy</div>
+                <img src="assets/images/icon-down-arrow.svg">
+              </div>
+              <div class="mode">
+                <div class="mode-selected">Timed (60s)</div>
+                <img src="assets/images/icon-down-arrow.svg">
+              </div>
+            </div>
+            <div class="options">
+              <div class="outer-difficulty-list hidden">
+                <div class="difficulty-list">
+                  <div class="easy active">Easy</div>
+                  <div class="medium">Medium</div>
+                  <div class="hard">Hard</div>
+                </div>
+              </div>
+              <div class="outer-mode-list hidden">
+                <div class="mode-list">
+                  <div class="timed active">Timed (60s)</div>
+                  <div class="passage">Passage</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="border-line-container">
+            <div class="border-line"></div>
+          </div>
+        </div>
       </div>
-      <div class="passage-container blurred">
-        <div class="padding-on-top-of-restart-button">
-          <div class="passage-shown">
+
+      <div class="content">
+        <div class="start-screen">
+          <div class="start-button">Start Typing Test</div>
+          <div class="text-below-start-button">Or click the text and start typing</div>
+        </div>
+        <div class="passage-container blurred">
+          <div class="padding-on-top-of-restart-button">
+            <div class="passage-shown">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <div class="restart-test-container hidden">
-    <div class="border-line-container">
-      <div class="border-line"></div>
-    </div>
-    <div class="restart-test-container-border">
-      <div class="restart-button">
-        Restart Test <img class="restart-icon" src="./assets/images/icon-restart.svg">
+      <div class="border-line-container">
+        <div class="border-line"></div>
+      </div>
+      <div class="restart-test-container-border">
+        <div class="restart-button">
+          Restart Test <img class="restart-icon" src="./assets/images/icon-restart.svg">
+        </div>
       </div>
     </div>
-  </div>
   <!-- Passage -->
 
   
