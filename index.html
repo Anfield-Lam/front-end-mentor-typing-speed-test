@@ -352,10 +352,10 @@
     }
 
     .end-screen {
-      display: flex;
       z-index: 30;
       height: 100vh;
       justify-content: center;
+      padding: 1rem;
     }
 
     .complete-tick, .new-pb {
@@ -363,7 +363,7 @@
     }
 
     .icon-container {
-      height: 10rem;
+      height: 6rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -379,6 +379,35 @@
 
     .closed {
       display: None;
+    }
+
+    .test-result-text-container {
+      display: flex;
+      width: 100%;
+      height: 15vh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .finish-text {
+      display: none;
+    }
+
+    .finish-text.active {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .finish-text .first {
+      font-size: 1.7rem;
+      font-weight: 600;
+      padding-bottom: 1rem;
+    }
+
+    .finish-text .second {
+      font-size: 1.1rem;
+      color: var(--grey)
     }
   </style>
 </head>
@@ -471,6 +500,20 @@
           </div>
           <div class="new-pb">
             <img src="assets/images/icon-new-pb.svg">
+          </div>
+        </div>
+        <div class="test-result-text-container">
+          <div class="finish-text test-complete-text">
+            <div class="first">Test Complete!</div>
+            <div class="second">Solid run. Keep pushing to beat your high score</div>
+          </div>
+          <div class="finish-text first-complete-text">
+            <div class="first"></div>
+            <div class="second"></div>
+          </div>
+          <div class="finish-text new-score-text">
+            <div class="first"></div>
+            <div class="second"></div>
           </div>
         </div>
       </div>

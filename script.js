@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let errors = 0;
 	let percentage;
 	let firstWord = false;
+	let testIsCompleted = false;
 
 	difficulty.addEventListener("click", () => {
 		OuterDifficultyList.classList.toggle("hidden");
@@ -140,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const timer = setInterval(function() {
 			remainingTime --;
 			Mode.textContent = `0:${remainingTime}`;
-			if (remainingTime <= 0) {
+			if (remainingTime <= 0 && !testIsCompleted) {
 				clearInterval(timer);
 				timeIsUp(); //temp
 			}
@@ -193,6 +194,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		})
 	}
 
+	const testCompleteText = document.querySelector(".test-complete-text")
+
 	function testCompleted() {
 		testScreen.classList.add("closed")
 		content.classList.add("closed")
@@ -200,6 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		endScreen.classList.add("active")
 		completeTick.classList.add("active")
 		header.classList.add("height-reduction")
+		testIsCompleted = true;
+		testCompleteText.classList.add("active");
 	}
 
 	const accuracy = document.querySelector(".accuracy .right")
