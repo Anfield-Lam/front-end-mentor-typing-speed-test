@@ -272,10 +272,6 @@
       font-weight: 400;
     }
 
-    .closed {
-      display: None;
-    }
-
     .passage-container {
       position: absolute;
       padding: 0.5rem;
@@ -355,6 +351,35 @@
       font-size: 1.8rem;
     }
 
+    .end-screen {
+      display: flex;
+      z-index: 30;
+      height: 100vh;
+      justify-content: center;
+    }
+
+    .complete-tick, .new-pb {
+      display: none;
+    }
+
+    .icon-container {
+      height: 10rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .complete-tick.active, .new-pb.active {
+      display: flex;
+    }
+
+    .header.height-reduction {
+      min-height: 0;
+    }
+
+    .closed {
+      display: None;
+    }
   </style>
 </head>
 <body>
@@ -435,6 +460,17 @@
           <div class="padding-on-top-of-restart-button">
             <div class="passage-shown">
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="end-screen">
+        <div class="icon-container">
+          <div class="complete-tick">
+            <img src="assets/images/icon-completed.svg">
+          </div>
+          <div class="new-pb">
+            <img src="assets/images/icon-new-pb.svg">
           </div>
         </div>
       </div>

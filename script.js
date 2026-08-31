@@ -111,6 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	const timed = document.querySelector(".timed");
 	const wpm = document.querySelector(".wpm .right");
 	const testScreen = document.querySelector(".test-screen")
+	const header = document.querySelector(".header")
+
+	const endScreen = document.querySelector(".end-screen")
+	const completeTick = document.querySelector(".complete-tick")
 
 	content.addEventListener("click", () => {
 		if (testStarted === true) return
@@ -149,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		testScreen.classList.add("closed")
 		content.classList.add("closed")
 		restartTestContainer.classList.add("hidden")
+		endScreen.remove("closed")
 	}
 
 	function startTyping() {
@@ -192,6 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		testScreen.classList.add("closed")
 		content.classList.add("closed")
 		restartTestContainer.classList.add("hidden")
+		endScreen.classList.add("active")
+		completeTick.classList.add("active")
+		header.classList.add("height-reduction")
 	}
 
 	const accuracy = document.querySelector(".accuracy .right")
