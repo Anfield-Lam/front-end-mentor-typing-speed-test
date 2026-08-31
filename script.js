@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const paddingOnTopOfRestartButton = document.querySelector(".padding-on-top-of-restart-button")
 	const timed = document.querySelector(".timed");
 	const wpm = document.querySelector(".wpm .right");
+	const testScreen = document.querySelector(".test-screen")
 
 	content.addEventListener("click", () => {
 		if (testStarted === true) return
@@ -137,11 +138,17 @@ document.addEventListener("DOMContentLoaded", () => {
 			Mode.textContent = `0:${remainingTime}`;
 			if (remainingTime <= 0) {
 				clearInterval(timer);
-				location.reload(); //temp
+				timeIsUp(); //temp
 			}
 			if (firstWord) updateWpm(remainingTime);
 			Mode.classList.add("not-60")
 		}, 1000)
+	}
+
+	function timeIsUp() {
+		testScreen.classList.add("closed")
+		content.classList.add("closed")
+		restartTestContainer.classList.add("hidden")
 	}
 
 	function startTyping() {
@@ -177,7 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			calculateAccuracy();
 			updateCurr(curr);	
+			if (curr === currentTextPassage.length) testCompleted();
 		})
+	}
+
+	function testCompleted() {
+		testScreen.classList.add("closed")
+		content.classList.add("closed")
+		restartTestContainer.classList.add("hidden")
 	}
 
 	const accuracy = document.querySelector(".accuracy .right")
