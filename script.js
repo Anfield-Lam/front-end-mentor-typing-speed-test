@@ -153,10 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function timeIsUp() {
-		testScreen.classList.add("closed")
-		content.classList.add("closed")
-		restartTestContainer.classList.add("hidden")
-		endScreen.remove("closed")
+		location.reload();
 	}
 
 	function startTyping() {
@@ -219,8 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const accuracy = document.querySelector(".accuracy .right")
 
 	function calculateAccuracy() {
-		if (!curr) {percentage = 100;}
-		else {percentage = (curr - errors) / curr * 100;}
+		if (curr) {percentage = (curr - errors) / curr * 100;}
 		accuracy.textContent = `${Math.round(percentage)}%`
 
 		if (percentage === 100) accuracy.classList.add("flawless");
@@ -234,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function revertKeyPress(num) {
 		let key = document.querySelector(`.num-${num}`)
-		if (key.classList.contains("wrong")) errors -= 1;
+		if (key.classList.contains("wrong")) errors --;
 		key.classList.remove("correct")	
 		key.classList.remove("wrong")	
 	}
@@ -286,9 +282,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (curr == index) item.classList.add("curr")
 		})
 	}
-
-	const restartButton = document.querySelector(".restart-button");
-	restartButton.addEventListener("click", () => {
-		location.reload();
-	})
+	
+	document.querySelectorAll(".restart-button").forEach((button) => {
+		button.addEventListener("click", () => {
+			location.reload();
+		});
+	});
 });
