@@ -356,6 +356,7 @@
       height: 100vh;
       justify-content: center;
       padding: 1.5rem;
+      max-width: 30rem;
     }
 
     .complete-tick, .new-pb {
@@ -433,10 +434,26 @@
     }
 
     .text.bottom {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      transform: scaleX(1.1);
-      padding-left: 1rem;
+      display: flex;
+    }
+
+    .end-screen-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .bottom .correct {
+      color: var(--green);
+    }
+
+    .bottom .incorrect {
+      color: var(--red);
+    }
+
+    .dash {
+      color: var(--grey);
     }
   </style>
 </head>
@@ -522,41 +539,47 @@
         </div>
       </div>
 
-      <div class="end-screen">
-        <div class="icon-container">
-          <div class="complete-tick">
-            <img src="assets/images/icon-completed.svg">
+      <div class="end-screen-container">
+        <div class="end-screen">
+          <div class="icon-container">
+            <div class="complete-tick">
+              <img src="assets/images/icon-completed.svg">
+            </div>
+            <div class="new-pb">
+              <img src="assets/images/icon-new-pb.svg">
+            </div>
           </div>
-          <div class="new-pb">
-            <img src="assets/images/icon-new-pb.svg">
+          <div class="test-result-text-container">
+            <div class="finish-text test-complete-text">
+              <div class="first">Test Complete!</div>
+              <div class="second">Solid run. Keep pushing to beat your high score.</div>
+            </div>
+            <div class="finish-text first-complete-text">
+              <div class="first">Baseline Established!</div>
+              <div class="second">You've set the bar. Now the real challenge begins-time to beat it.</div>
+            </div>
+            <div class="finish-text new-score-text">
+              <div class="first">High Score Smashed!</div>
+              <div class="second">You're getting faster. That was incredible typing.</div>
+            </div>
           </div>
-        </div>
-        <div class="test-result-text-container">
-          <div class="finish-text test-complete-text">
-            <div class="first">Test Complete!</div>
-            <div class="second">Solid run. Keep pushing to beat your high score.</div>
-          </div>
-          <div class="finish-text first-complete-text">
-            <div class="first">Baseline Established!</div>
-            <div class="second">You've set the bar. Now the real challenge begins-time to beat it.</div>
-          </div>
-          <div class="finish-text new-score-text">
-            <div class="first">High Score Smashed!</div>
-            <div class="second">You're getting faster. That was incredible typing.</div>
-          </div>
-        </div>
-        <div class="test-result-box-container">
-          <div class="box first">
-            <div class="text top">WPM:</div>
-            <div class="text bottom"></div>
-          </div>
-          <div class="box second">
-            <div class="text top">Accuracy:</div>
-            <div class="text bottom"></div>
-          </div>
-          <div class="box third">
-            <div class="text top">Characters</div>
-            <div class="text bottom"></div>
+          <div class="test-result-box-container">
+            <div class="box first">
+              <div class="text top">WPM:</div>
+              <div class="text bottom"></div>
+            </div>
+            <div class="box second">
+              <div class="text top">Accuracy:</div>
+              <div class="text bottom"></div>
+            </div>
+            <div class="box third">
+              <div class="text top">Characters</div>
+              <div class="text bottom">
+                <div class="correct"></div>
+                <div class="dash">/</div>
+                <div class="incorrect"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

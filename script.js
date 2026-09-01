@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let percentage;
 	let firstWord = false;
 	let testIsCompleted = false;
-	let wordsPerMinute = 0;
+	let wordsPerMinute;
 
 	difficulty.addEventListener("click", () => {
 		OuterDifficultyList.classList.toggle("hidden");
@@ -133,8 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
 
 	function updateWpm(time) {
-		let wordsPerMinute = ((curr + 1) / 5 - errors) / (60 - time) * 60;
-		if (wordsPerMinute < 0) wordsPerMinute = 0
+		wordsPerMinute = ((curr + 1) / 5 - errors) / (60 - time) * 60;
+		if (wordsPerMinute < 0) wordsPerMinute = 0;
 		wordsPerMinute = Math.round(wordsPerMinute)
 		wpm.textContent = wordsPerMinute
 	}
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const testCompleteText = document.querySelector(".test-complete-text");
 	const boxFirstTextBottom = document.querySelector(".box.first .text.bottom");
 	const boxSecondTextBottom = document.querySelector(".box.second .text.bottom");
-	const boxThirdTextBottom = document.querySelector(".box.third .text.bottom");
+	const boxThirdTextBottom = document.querySelector(".box.third .text.bottom").children;
 
 	function testCompleted() {
 		testScreen.classList.add("closed")
@@ -212,6 +212,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		testCompleteText.classList.add("active");
 		boxFirstTextBottom.textContent = wordsPerMinute;
 		boxSecondTextBottom.textContent = `${Math.round(percentage)}%`;
+		boxThirdTextBottom[0].textContent = `${currentTextPassage.length-errors}`;
+		boxThirdTextBottom[2].textContent = `${errors}`;
 	}
 
 	const accuracy = document.querySelector(".accuracy .right")
