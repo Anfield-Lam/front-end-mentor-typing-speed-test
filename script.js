@@ -22,9 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	let firstWord = false;
 	let testIsCompleted = false;
 	let wordsPerMinute;
-	let permanentErrors = 0;
 	let furthestCurr = 0;
 	let passageIndexList = [];
+	let bestwpm = 0;
+	if (localStorage.getItem("bestwpm") !== null) {
+  	bestwpm = localStorage.getItem("bestwpm")
+	} 
+	const personalBest = document.querySelector(".personal-best .right");
+	personalBest.textContent = bestwpm;
 
 	difficulty.addEventListener("click", () => {
 		OuterDifficultyList.classList.toggle("hidden");
@@ -211,6 +216,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		header.classList.add("height-reduction")
 		testIsCompleted = true;
 		testCompleteText.classList.add("active");
+		if (wordsPerMinute > bestwpm) {
+			localStorage.setItem("bestwpm", wordsPerMinute);
+			bestwpm = wordsPerMinute;
+		}
+		personalBest.textContent = bestwpm;
 		boxFirstTextBottom.textContent = wordsPerMinute;
 		boxSecondTextBottom.textContent = `${Math.round(percentage)}%`;
 		boxThirdTextBottom[0].textContent = `${passageIndexList.slice(0, curr).filter(el => el === 1).length}`;
