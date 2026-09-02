@@ -213,6 +213,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	const endScreen = document.querySelector(".end-screen")
+	const star1Icon = document.querySelector(".star-1-icon")
+	const star2Icon = document.querySelector(".star-2-icon")
+	const beatThisScoreText = document.querySelector(".beat-this-score-text")
+	const goAgainText = document.querySelector(".go-again-text")
 	const completeTick = document.querySelector(".complete-tick")
 	const newPb = document.querySelector(".new-pb")
 	const newScoreText = document.querySelector(".new-score-text")
@@ -221,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const boxFirstTextBottom = document.querySelector(".box.first .text.bottom");
 	const boxSecondTextBottom = document.querySelector(".box.second .text.bottom");
 	const boxThirdTextBottom = document.querySelector(".box.third .text.bottom").children;
+	const restartButton = document.querySelector(".restart-test-container-2 .restart-button");
 
 	function testCompleted() {
 		testScreen.classList.add("closed")
@@ -230,13 +235,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (firstTime === true) {
 			completeTick.classList.add("active")
 			firstCompleteText.classList.add("active");
+			star1Icon.classList.add("active")
+			star2Icon.classList.add("active")
+			beatThisScoreText.classList.add("active")
+			restartButton.classList.add("beatThisScore")
 		} else if (wordsPerMinute > bestwpm) {
 			newPb.classList.add("active")
 			newScoreText.classList.add("active")
-			
+			goAgainText.classList.add("active")
 		} else {
 			completeTick.classList.add("active")
 			testCompleteText.classList.add("active");
+			star1Icon.classList.add("active")
+			star2Icon.classList.add("active")
+			goAgainText.classList.add("active")
 		}
 
 		if (wordsPerMinute > bestwpm) {

@@ -429,7 +429,7 @@
       height: 7vh;
       margin-bottom: 1rem;
       padding: 2vh 1.5rem;
-      width: 98%;
+      width: 96%;
       max-width: 25rem; 
     }
 
@@ -437,11 +437,11 @@
       font-size: 1.3rem;
       font-weight: 400;
       color: var(--grey);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
 
     .text.bottom {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 700;
       display: flex;
     }
@@ -480,6 +480,10 @@
       color: var(--black);
     }
 
+    .restart-test-container-2 .restart-button.beatThisScore{
+      width: 11.8rem;
+    }
+
     .restart-test-container-2 .restart-button img{
       filter: invert(1);
       padding-left: 0.5rem;
@@ -489,6 +493,44 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+    }
+
+    .star-1-icon, .star-2-icon {
+      display: none;
+    }
+
+    .star-1-icon.active, .star-2-icon.active {
+      display: flex;
+      position: absolute;
+      z-index: 20;
+    }
+
+    .star-1-icon.active {
+      bottom: 0.7rem;
+      right: 0.7rem;
+      height: 3rem;
+    }
+
+    .star-2-icon.active {
+      top: 7rem;
+      left: 0.7rem;
+      height: 1.2rem;
+    }
+
+    .beat-this-score-text {
+      display: none;
+    }
+
+    .beat-this-score-text.active {
+      display: flex;
+    }
+
+    .go-again-text {
+      display: none;
+    }
+
+    .go-again-text.active {
+      display: flex;
     }
   </style>
 </head>
@@ -619,9 +661,13 @@
         </div>
         <div class="restart-test-container-2">
           <div class="restart-button">
-            Go Again <img class="restart-icon" src="./assets/images/icon-restart.svg">
+            <div class="beat-this-score-text">Beat This Score</div>
+            <div class="go-again-text">Go Again</div>
+            <img class="restart-icon" src="./assets/images/icon-restart.svg">
           </div>
         </div>
+        <img class="star-1-icon" src="./assets/images/pattern-star-1.svg">
+        <img class="star-2-icon" src="./assets/images/pattern-star-2.svg">
       </div>
     </div>
   </div>
