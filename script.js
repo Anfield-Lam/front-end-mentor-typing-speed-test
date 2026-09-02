@@ -25,8 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	let furthestCurr = 0;
 	let passageIndexList = [];
 	let bestwpm = 0;
+	let firstTime = true;
 	if (localStorage.getItem("bestwpm") !== null) {
   	bestwpm = localStorage.getItem("bestwpm")
+		firstTime = false;
 	} 
 	const personalBest = document.querySelector(".personal-best .right");
 	personalBest.textContent = bestwpm;
@@ -123,9 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const testScreen = document.querySelector(".test-screen")
 	const header = document.querySelector(".header")
 
-	const endScreen = document.querySelector(".end-screen")
-	const completeTick = document.querySelector(".complete-tick")
-
 	content.addEventListener("click", () => {
 		if (testStarted === true) return
 		testStarted = true;
@@ -202,6 +201,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		})
 	}
 
+	const endScreen = document.querySelector(".end-screen")
+	const completeTick = document.querySelector(".complete-tick")
+	const newPb = document.querySelector(".new-pb")
+	const newScoreText = document.querySelector(".new-score-text")
+	const firstCompleteText = document.querySelector(".first-complete-text")
 	const testCompleteText = document.querySelector(".test-complete-text");
 	const boxFirstTextBottom = document.querySelector(".box.first .text.bottom");
 	const boxSecondTextBottom = document.querySelector(".box.second .text.bottom");
@@ -212,14 +216,26 @@ document.addEventListener("DOMContentLoaded", () => {
 		content.classList.add("closed")
 		restartTestContainer.classList.add("hidden")
 		endScreen.classList.add("active")
-		completeTick.classList.add("active")
-		header.classList.add("height-reduction")
-		testIsCompleted = true;
-		testCompleteText.classList.add("active");
+		if (firstTime === true) {
+			completeTick.classList.add("active")
+			firstCompleteText.classList.add("active");
+		} else if (wordsPerMinute > bestwpm) {
+			newPb.classList.add("active")
+			newScoreText.classList.add("active")
+			
+		} else {
+			completeTick.classList.add("active")
+			testCompleteText.classList.add("active");
+		}
+
 		if (wordsPerMinute > bestwpm) {
 			localStorage.setItem("bestwpm", wordsPerMinute);
 			bestwpm = wordsPerMinute;
 		}
+		
+		header.classList.add("height-reduction")
+		testIsCompleted = true;
+
 		personalBest.textContent = bestwpm;
 		boxFirstTextBottom.textContent = wordsPerMinute;
 		boxSecondTextBottom.textContent = `${Math.round(percentage)}%`;
