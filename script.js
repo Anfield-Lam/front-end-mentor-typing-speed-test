@@ -213,8 +213,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		testCompleteText.classList.add("active");
 		boxFirstTextBottom.textContent = wordsPerMinute;
 		boxSecondTextBottom.textContent = `${Math.round(percentage)}%`;
-		boxThirdTextBottom[0].textContent = `${currentTextPassage.length-errors}`;
-		boxThirdTextBottom[2].textContent = `${errors}`;
+		boxThirdTextBottom[0].textContent = `${passageIndexList.slice(0, curr).filter(el => el === 1).length}`;
+		boxThirdTextBottom[2].textContent = `${passageIndexList.slice(0, curr).filter(el => el === 0).length}`;
 	}
 
 	const accuracy = document.querySelector(".accuracy .right")
