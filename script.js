@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	let firstWord = false;
 	let testIsCompleted = false;
 	let wordsPerMinute;
+	let permanentErrors = 0;
+	let furthestCurr = 0;
+	let passageIndexList = [];
 
 	difficulty.addEventListener("click", () => {
 		OuterDifficultyList.classList.toggle("hidden");
@@ -185,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 				else wrongKey(curr);
 				curr ++;
+				if (curr > furthestCurr) furthestCurr = curr;
 				if (skipLineIndexes.includes(curr)) passageChangePosition(1);
 			}
 			calculateAccuracy();
@@ -216,7 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const accuracy = document.querySelector(".accuracy .right")
 
 	function calculateAccuracy() {
-		if (curr) {percentage = (curr - errors) / curr * 100;}
+		let count = passageIndexList.slice(0, curr).filter(el => el === 0).length;
+		if (curr) {percentage = (curr - count) / (curr) * 100;}
 		accuracy.textContent = `${Math.round(percentage)}%`
 
 		if (percentage === 100) accuracy.classList.add("flawless");
@@ -237,13 +242,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function correctKey(num) {
 		let key = document.querySelector(`.num-${num}`)
-		key.classList.add("correct")				
+		key.classList.add("correct")	
+		if (passageIndexList[num] === -1) passageIndexList[num] = 1;			
 	}
 
 	function wrongKey(num) {
 		errors ++;
 		let key = document.querySelector(`.num-${num}`)
 		key.classList.add("wrong")				
+		passageIndexList[num] = 0;
 	}
 
 
@@ -273,6 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			passageShown.appendChild(span)
 			pointer ++;
 		})
+		passageIndexList = new Array(currentTextPassage.length).fill(-1);
 	}
 
 	function updateCurr(curr) {
