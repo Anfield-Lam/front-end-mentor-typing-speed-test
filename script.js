@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	let passageIndexList = [];
 	let bestwpm = 0;
 	let firstTime = true;
+  let timePassed = 0;
+
 	if (localStorage.getItem("bestwpm") !== null) {
   	bestwpm = localStorage.getItem("bestwpm")
 		firstTime = false;
@@ -136,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		paddingOnTopOfRestartButton.classList.add(".active")
 		content.classList.add("clicked")
 		if (timed.classList.contains("active")) startTimer();
+		else startCounter();
 		startTyping();
 	})
 
@@ -144,6 +147,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (wordsPerMinute < 0) wordsPerMinute = 0;
 		wordsPerMinute = Math.round(wordsPerMinute)
 		wpm.textContent = wordsPerMinute
+	}
+
+	function startCounter() {
+		const timer = setInterval(function() {
+			timePassed++;
+			if (firstWord) updateWpm(60 - timePassed);
+		}, 1000);
 	}
 
 	function startTimer() {
@@ -178,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				e.key === "Backspace" ||
 			  e.key === "\"" ||
 				e.key === "-" ||
+				e.key === "'" ||
 				e.key === ":")
 			) return ;
 			if (e.key === "Backspace" && curr > 0) {
@@ -232,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			localStorage.setItem("bestwpm", wordsPerMinute);
 			bestwpm = wordsPerMinute;
 		}
-		
+
 		header.classList.add("height-reduction")
 		testIsCompleted = true;
 
