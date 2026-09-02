@@ -261,7 +261,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		personalBest.textContent = bestwpm;
 		boxFirstTextBottom.textContent = wordsPerMinute;
+
 		boxSecondTextBottom.textContent = `${Math.round(percentage)}%`;
+    if (percentage === 100) boxSecondTextBottom.classList.add("flawless");
+
 		boxThirdTextBottom[0].textContent = `${passageIndexList.slice(0, curr).filter(el => el === 1).length}`;
 		boxThirdTextBottom[2].textContent = `${passageIndexList.slice(0, curr).filter(el => el === 0).length}`;
 	}
