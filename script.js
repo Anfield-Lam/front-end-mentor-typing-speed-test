@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   	bestwpm = localStorage.getItem("bestwpm")
 		firstTime = false;
 	} 
+	
 	const personalBest = document.querySelector(".personal-best .right");
 	personalBest.textContent = bestwpm;
 
@@ -179,7 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		const skipLineIndexes = CheckForLineSkips();
 		skipLineIndexes.splice(0, 3)
 		document.addEventListener("keydown", (e) => {
-			const allowed = /^[a-zA-Z]$/;
+			if (testIsCompleted) return;
+			const allowed = /^[a-zA-Z0-9]$/;
 			if (
 				!(allowed.test(e.key) || 
 				e.key === " " || 
@@ -226,6 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const boxSecondTextBottom = document.querySelector(".box.second .text.bottom");
 	const boxThirdTextBottom = document.querySelector(".box.third .text.bottom").children;
 	const restartButton = document.querySelector(".restart-test-container-2 .restart-button");
+	const confetti = document.querySelector(".confetti");
 
 	function testCompleted() {
 		testScreen.classList.add("closed")
@@ -234,24 +237,45 @@ document.addEventListener("DOMContentLoaded", () => {
 		endScreen.classList.add("active")
 		if (firstTime === true) {
 			completeTick.classList.add("active")
+			newPb.classList.remove("active")
 			firstCompleteText.classList.add("active");
+			newScoreText.classList.remove("active");
+			testCompleteText.classList.remove("active");
 			star1Icon.classList.add("active")
 			star2Icon.classList.add("active")
 			beatThisScoreText.classList.add("active")
+			goAgainText.classList.remove("active")
 			restartButton.classList.add("beatThisScore")
+			confetti.classList.remove("active")
 		} else if (wordsPerMinute > bestwpm) {
+			completeTick.classList.remove("active")
 			newPb.classList.add("active")
+			firstCompleteText.classList.remove("active");
 			newScoreText.classList.add("active")
-			goAgainText.classList.add("active")
+			testCompleteText.classList.remove("active");
+			star1Icon.classList.remove("active")
+			star2Icon.classList.remove("active")
+			beatThisScoreText.classList.add("active")
+			goAgainText.classList.remove("active")
+			restartButton.classList.add("beatThisScore")
+			confetti.classList.add("active")
 		} else {
 			completeTick.classList.add("active")
+			newPb.classList.remove("active")
+			firstCompleteText.classList.remove("active");
+			newScoreText.classList.remove("active")
 			testCompleteText.classList.add("active");
 			star1Icon.classList.add("active")
 			star2Icon.classList.add("active")
+			beatThisScoreText.classList.remove("active")
 			goAgainText.classList.add("active")
+			restartButton.classList.remove("beatThisScore")
+			confetti.classList.remove("active")
 		}
 
-		if (wordsPerMinute > bestwpm) {
+		firstTime = false;
+
+		if (wordsPerMinute >= bestwpm) {
 			localStorage.setItem("bestwpm", wordsPerMinute);
 			bestwpm = wordsPerMinute;
 		}

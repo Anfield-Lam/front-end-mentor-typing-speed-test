@@ -477,6 +477,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 30;
     }
 
     .restart-test-container-2 .restart-button{
@@ -503,11 +504,11 @@
       justify-content: center;
     }
 
-    .star-1-icon, .star-2-icon {
+    .star-1-icon, .star-2-icon, .confetti {
       display: none;
     }
 
-    .star-1-icon.active, .star-2-icon.active {
+    .star-1-icon.active, .star-2-icon.active, .confetti.active {
       display: flex;
       position: absolute;
       z-index: 20;
@@ -539,6 +540,16 @@
 
     .go-again-text.active {
       display: flex;
+    }
+
+    .confetti {
+      transform: translateX(-50%);   
+      bottom:-10%;
+      left: 50%;   
+      min-width: 60rem;
+      width: 100%;
+      position: absolute;
+      z-index: 0;
     }
   </style>
 </head>
@@ -676,6 +687,7 @@
         </div>
         <img class="star-1-icon" src="./assets/images/pattern-star-1.svg">
         <img class="star-2-icon" src="./assets/images/pattern-star-2.svg">
+        <img class="confetti" src="./assets/images/pattern-confetti.svg">
       </div>
     </div>
   </div>
