@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	let bestwpm = 0;
 	let firstTime = true;
   let timePassed = 0;
+	const isTouchDevice = window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+	const keyboardInput = document.querySelector(".keyboard-input");
 
 	if (localStorage.getItem("bestwpm") !== null) {
   	bestwpm = localStorage.getItem("bestwpm")
@@ -136,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		OuterDifficultyList.classList.add("hidden");
 		OuterModeList.classList.add("hidden");
 		restartTestContainer.classList.remove("hidden");
-		paddingOnTopOfRestartButton.classList.add(".active")
+		paddingOnTopOfRestartButton.classList.add("active")
 		content.classList.add("clicked")
 		if (timed.classList.contains("active")) startTimer();
 		else startCounter();
@@ -179,6 +181,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		updateCurr(curr);
 		const skipLineIndexes = CheckForLineSkips();
 		skipLineIndexes.splice(0, 3)
+		passageShown.addEventListener("click", toggleKeyboard);
+
+		if (isTouchDevice) {
+			keyboardInput.focus();
+		}
+
 		document.addEventListener("keydown", (e) => {
 			if (testIsCompleted) return;
 			const allowed = /^[a-zA-Z0-9]$/;
@@ -231,6 +239,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const confetti = document.querySelector(".confetti");
 
 	function testCompleted() {
+		keyboardInput.blur();
+		keyboardInput.disabled = true;
 		testScreen.classList.add("closed")
 		content.classList.add("closed")
 		restartTestContainer.classList.add("hidden")
@@ -365,6 +375,16 @@ document.addEventListener("DOMContentLoaded", () => {
 			item.classList.remove("curr")
 			if (curr == index) item.classList.add("curr")
 		})
+	}
+
+	function toggleKeyboard() {
+		if (!isTouchDevice || testIsCompleted) return;
+
+		if (document.activeElement === keyboardInput) {
+			keyboardInput.blur();
+		} else {
+			keyboardInput.focus();
+		}
 	}
 	
 	document.querySelectorAll(".restart-button").forEach((button) => {
