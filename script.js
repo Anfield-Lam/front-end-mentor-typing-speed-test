@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const testScreen = document.querySelector(".test-screen")
 	const header = document.querySelector(".header")
 
-	content.addEventListener("click", () => {
+	content.addEventListener("click" || "touchstart", () => {
 		if (testStarted === true) return
 		testStarted = true;
 		startScreen.classList.add("closed")
@@ -181,11 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		updateCurr(curr);
 		const skipLineIndexes = CheckForLineSkips();
 		skipLineIndexes.splice(0, 3)
-		passageShown.addEventListener("click", toggleKeyboard);
-
-		if (isTouchDevice) {
-			keyboardInput.focus();
-		}
+		passageShown.addEventListener("click" || "touchstart", toggleKeyboard);
 
 		document.addEventListener("keydown", (e) => {
 			if (testIsCompleted) return;
@@ -381,9 +377,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (!isTouchDevice || testIsCompleted) return;
 
 		if (document.activeElement === keyboardInput) {
-			keyboardInput.blur();
+			requestAnimationFrame(() => {
+				keyboardInput.blur();
+			});
 		} else {
-			keyboardInput.focus();
+			requestAnimationFrame(() => {
+				keyboardInput.focus(); 
+			});
 		}
 	}
 	
