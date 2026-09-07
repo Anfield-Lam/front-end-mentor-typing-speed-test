@@ -55,6 +55,7 @@
       user-select: none;
       overflow: hidden;
       margin: 0.85rem;
+      height: 100dvh;
     }
 
     .black-overlay {
@@ -95,7 +96,7 @@
       flex: 1;
       text-align: center;
       padding: 1rem;
-      min-height: 5vh;
+      min-height: 5dvh;
     }
 
     .divider {
@@ -220,7 +221,7 @@
     .content {
       display: flex;
       flex-direction: column;
-      min-height: 75vh; /* full viewport height */
+      min-height: 75dvh; /* full viewport height */
       align-items: center;
       justify-content: center;
     }
@@ -276,7 +277,7 @@
       position: absolute;
       padding: 0.5rem;
       top: calc(14rem - var(--line-skip-padding));
-      min-height: 75vh;
+      min-height: 75dvh;
       z-index: 0;
     }
 
@@ -353,7 +354,7 @@
 
     .end-screen {
       z-index: 30;
-      height: 60vh;
+      height: 60dvh;
       display: flex;
       flex-direction: column;
       padding: 2rem;
@@ -385,7 +386,7 @@
     .test-result-text-container {
       display: flex;
       width: 100%;
-      height: 15vh;
+      height: 15dvh;
       align-items: center;
       justify-content: center;
       margin-bottom: 0.5rem;
@@ -417,7 +418,7 @@
     }
 
     .test-result-box-container.active {
-      height: 30vh;
+      height: 30dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -430,9 +431,9 @@
       justify-content: space-between;
       border: 1px solid var(--grey);
       border-radius: 7px;
-      height: 7vh;
+      height: 7dvh;
       margin-bottom: 1rem;
-      padding: 2vh 1.5rem;
+      padding: 2dvh 1.5rem;
       width: 96%;
       max-width: 25rem; 
     }
