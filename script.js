@@ -231,11 +231,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	const completeTick = document.querySelector(".complete-tick")
 	const newPb = document.querySelector(".new-pb")
 	const newScoreText = document.querySelector(".new-score-text")
+	const testResultBoxContainer = document.querySelector(".test-result-box-container")
 	const firstCompleteText = document.querySelector(".first-complete-text")
 	const testCompleteText = document.querySelector(".test-complete-text");
 	const boxFirstTextBottom = document.querySelector(".box.first .text.bottom");
 	const boxSecondTextBottom = document.querySelector(".box.second .text.bottom");
 	const boxThirdTextBottom = document.querySelector(".box.third .text.bottom").children;
+	const restartTestContainer2 = document.querySelector(".restart-test-container-2")
 	const restartButton = document.querySelector(".restart-test-container-2 .restart-button");
 	const confetti = document.querySelector(".confetti");
 
@@ -246,6 +248,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		content.classList.add("closed")
 		restartTestContainer.classList.add("hidden")
 		endScreen.classList.add("active")
+		restartTestContainer2.classList.add("active")
+		testResultBoxContainer.classList.add("active")
 		if (firstTime === true) {
 			completeTick.classList.add("active")
 			newPb.classList.remove("active")

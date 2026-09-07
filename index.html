@@ -413,6 +413,10 @@
     }
 
     .test-result-box-container {
+      display: none
+    }
+
+    .test-result-box-container.active {
       height: 30vh;
       display: flex;
       flex-direction: column;
@@ -472,7 +476,11 @@
       color: var(--grey);
     }
 
-    .restart-test-container-2 {    
+    .restart-test-container-2 {
+      display: none;
+    }   
+
+    .restart-test-container-2.active {    
       height: 10rem;            
       display: flex;
       justify-content: center;
