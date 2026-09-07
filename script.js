@@ -162,7 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	function startTimer() {
 		const timer = setInterval(function() {
 			remainingTime --;
-			Mode.textContent = `0:${remainingTime}`;
+			if (remainingTime < 10) Mode.textContent = `0:0${remainingTime}`;
+			else Mode.textContent = `0:${remainingTime}`;
 			if (remainingTime <= 0 && !testIsCompleted) {
 				clearInterval(timer);
 				timeIsUp(); //temp
