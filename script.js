@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {  
+  const DeviceHeight = window.innerHeight;
+	document.documentElement.style.setProperty("--window-height", `${DeviceHeight}px`);
+
 	const difficulty = document.querySelector(".difficulty");
 	const mode = document.querySelector(".mode");
 	const OuterDifficultyList = document.querySelector(".outer-difficulty-list");
