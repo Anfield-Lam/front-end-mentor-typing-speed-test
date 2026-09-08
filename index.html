@@ -10,7 +10,7 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 0.6875rem; text-align: center;}
+    .attribution { font-size: 0.6875rem; text-align: center; display: none;}
     .attribution a { color: hsl(228, 45%, 44%); }
 
     @font-face {
@@ -48,6 +48,17 @@
       --window-height: 0;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
     body {
       font-family: 'Sora', sans-serif;
       font-weight: 400;
@@ -56,12 +67,13 @@
       user-select: none;
       overflow: hidden;
       margin: 0.85rem;
-      height: calc(var(--window-height) - 1.7rem);
+      height: 100dvh;
     }
 
     .black-overlay {
       position: absolute;
       width: 100%;
+      height: 100%;
       top: 0;
       left: 0;
       background-color: var(--black);
@@ -69,6 +81,7 @@
     }
 
     .main-container {
+      height: 100%;
       width: 100%;
     }
 
@@ -222,7 +235,7 @@
     .content {
       display: flex;
       flex-direction: column;
-      min-height: 75dvh; /* full viewport height */
+      height: 80%;
       align-items: center;
       justify-content: center;
     }
@@ -236,7 +249,7 @@
     }
 
     .header {
-      min-height: 12.2rem;
+      height: 20%;
       position: relative;
       background-color: var(--black);
       z-index: 20;
@@ -249,6 +262,11 @@
     }
 
     .start-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100%;
       font-size: 1.5rem;
       font-weight: 400;
       text-align: center;
@@ -275,10 +293,11 @@
     }
 
     .passage-container {
+      height: 100%;
       position: absolute;
       padding: 0.5rem;
-      top: calc(14rem - var(--line-skip-padding));
-      min-height: 75dvh;
+      top: calc(23.5% - var(--line-skip-padding));
+      min-height: 0;
       z-index: 0;
     }
 
@@ -354,8 +373,9 @@
     }
 
     .end-screen {
+      height: 70%;
+      box-sizing: border-box;
       z-index: 30;
-      height: 60dvh;
       display: flex;
       flex-direction: column;
       padding: 2rem;
@@ -366,7 +386,7 @@
     }
 
     .icon-container {
-      height: 6rem;
+      height: 15%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -377,7 +397,7 @@
     }
 
     .header.height-reduction {
-      min-height: 0;
+      height: 5%;
     }
 
     .closed {
@@ -387,7 +407,7 @@
     .test-result-text-container {
       display: flex;
       width: 100%;
-      height: 15dvh;
+      height: 25%;
       align-items: center;
       justify-content: center;
       margin-bottom: 0.5rem;
@@ -419,11 +439,12 @@
     }
 
     .test-result-box-container.active {
-      height: 30dvh;
+      height: 55%;
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
+      padding: 2% 0;
     }
 
     .box {
@@ -432,9 +453,9 @@
       justify-content: space-between;
       border: 1px solid var(--grey);
       border-radius: 7px;
-      height: 7dvh;
-      margin-bottom: 1rem;
-      padding: 2dvh 1.5rem;
+      height: 30%;
+      margin: 2% 0;
+      padding: 5% 1.5rem;
       width: 96%;
       max-width: 25rem; 
     }
@@ -443,7 +464,6 @@
       font-size: 1.3rem;
       font-weight: 400;
       color: var(--grey);
-      margin-bottom: 0.25rem;
     }
 
     .text.bottom {
@@ -453,9 +473,14 @@
     }
 
     .end-screen-container {
+      display: none;
+    }
+
+    .end-screen-container.active {
+      height: 95%;
       display: flex;
-      justify-content: center;
       flex-direction: column;
+      align-items: left;
     }
 
     .box.second .text.bottom {
@@ -483,15 +508,17 @@
     }   
 
     .restart-test-container-2.active {    
-      height: 10rem;            
+      height: 33%;            
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: top;
+      padding-top: 5%;
       z-index: 30;
     }
 
     .restart-test-container-2 .restart-button{
-      width: 7.6rem;
+      height: 3.5rem;
+      width: 9.8rem;
       padding: 1rem;
       font-size: 1.3rem;
       font-weight: 600;
@@ -506,12 +533,6 @@
     .restart-test-container-2 .restart-button img{
       filter: invert(1);
       padding-left: 0.5rem;
-    }
-
-    .end-screen-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     .star-1-icon, .star-2-icon, .confetti {
@@ -568,6 +589,17 @@
       width: 1px;
       height: 1px;
       pointer-events: none;
+    }
+
+    .test-screen {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background-color: var(--black);
+    }
+
+    .test-screen.closed {
+      display: none;
     }
   </style>
 </head>

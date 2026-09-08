@@ -226,6 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		})
 	}
 
+	const endScreenContainer = document.querySelector(".end-screen-container")
 	const endScreen = document.querySelector(".end-screen")
 	const star1Icon = document.querySelector(".star-1-icon")
 	const star2Icon = document.querySelector(".star-2-icon")
@@ -250,6 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		testScreen.classList.add("closed")
 		content.classList.add("closed")
 		restartTestContainer.classList.add("hidden")
+		endScreenContainer.classList.add("active")
 		endScreen.classList.add("active")
 		restartTestContainer2.classList.add("active")
 		testResultBoxContainer.classList.add("active")
