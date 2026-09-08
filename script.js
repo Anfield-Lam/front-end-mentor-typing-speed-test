@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (isTouchDevice) {
 			keyboardInput.focus();
 		}
-		passageContainer.addEventListener("click", toggleKeyboard);
+		content.addEventListener("click", toggleKeyboard);
 
 		document.addEventListener("keydown", (e) => {
 			if (testIsCompleted) return;
