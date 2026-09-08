@@ -599,12 +599,49 @@
       display: none;
     }
 
+    .second-header-container > .desktop-right {
+      display: none;
+    }
+
+    @media (min-width: 1440px) {
+      .second-header-container{
+        display: flex;
+        width: 100%;
+      }
+
+      .second-header-container > .right {
+        display: none
+      }
+
+      .second-header-container > .left {
+        flex: 1;
+      }
+
+      .second-header-container > .desktop-right {
+        display: flex;
+        flex: 1;
+      }
+
+      .desktop-difficulty, .desktop-mode {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
     .hidden{
       visibility: hidden;
     }
 
     .closed {
-      display: None;
+      display: none;
     }
   </style>
 </head>
@@ -667,6 +704,18 @@
                     <div class="timed active">Timed (60s)</div>
                     <div class="passage">Passage</div>
                   </div>
+                </div>
+              </div>
+              <div class="desktop-right">
+                <div class="desktop-difficulty">
+                  <div>Difficulty: </div>
+                  <div class="desktop-easy">Easy</div>
+                  <div class="desktop-medium">Medium</div>
+                  <div class="desktop-hard">Hard</div>                  
+                </div>
+                <div class="desktop-mode">
+                  <div class="desktop-timed">Timed (60s)</div>
+                  <div class="desktop-passage">Passage</div>
                 </div>
               </div>
             </div>
