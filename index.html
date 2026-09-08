@@ -603,10 +603,21 @@
       display: none;
     }
 
-    @media (min-width: 1440px) {
+    @media (min-width: 1080px) {
+      .divider {
+        height: 1.5rem;
+      }
+
+      .header-container {
+        height: 50%
+      }
+
       .second-header-container{
         display: flex;
         width: 100%;
+        height: 50%;
+        margin: 0;
+        padding: 0;
       }
 
       .second-header-container > .right {
@@ -614,12 +625,12 @@
       }
 
       .second-header-container > .left {
-        flex: 1;
+        flex: 3;
       }
 
       .second-header-container > .desktop-right {
         display: flex;
-        flex: 1;
+        flex: 4;
       }
 
       .desktop-difficulty, .desktop-mode {
@@ -629,10 +640,41 @@
         flex: 1;
       }
 
+      .desktop-mid {
+        flex: 1;
+      }
+
       .item {
+        padding: 0;
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+
+      .item .right {
+        font-size: 1.3rem;
+      }
+
+      .item .left {
+        margin: 0;
+        padding: 0;
+        padding-right: 0.5rem;
+      }
+
+      .border-line-container {
+        margin: 0 0.8rem;
+      }
+
+      .wpm {
+        flex: 1;
+      }
+
+      .accuracy {
+        flex: 1.5;
+      }
+
+      .time {
+        flex: 1.2;
       }
     }
 
@@ -706,6 +748,7 @@
                   </div>
                 </div>
               </div>
+              <div class="desktop-mid"></div>
               <div class="desktop-right">
                 <div class="desktop-difficulty">
                   <div>Difficulty: </div>
