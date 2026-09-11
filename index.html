@@ -40,6 +40,7 @@
       --lighter-black: hsl(0, 0%, 15%);
       --grey: hsl(240, 3%, 46%);
       --blue: hsl(214, 100%, 55%);
+      --light-blue: hsl(210, 100%, 65%);
       --light-grey: hsl(240, 1%, 59%);
       --line-skip-padding: 0rem;
       --green: hsl(140, 63%, 57%);
@@ -646,12 +647,17 @@
         flex: 1;
       }
 
-      .desktop-easy, .desktop-medium, .desktop-hard, .desktop-timed, .desktop-passage {
-        cursor: pointer;
+      .desktop-button {
         border: 1px solid var(--white);
         border-radius: 8px;
         padding: 0.25rem 0.5rem;
         margin: 0.25rem;
+        cursor: pointer;
+      }
+
+      .desktop-button.active {
+        border: 1px solid var(--light-blue);
+        color: var(--light-blue)
       }
 
       .item {
@@ -766,15 +772,15 @@
               <div class="desktop-right">
                 <div class="desktop-difficulty">
                   <div>Difficulty: </div>
-                  <div class="desktop-easy">Easy</div>
-                  <div class="desktop-medium">Medium</div>
-                  <div class="desktop-hard">Hard</div>                  
+                  <div class="desktop-button desktop-easy active">Easy</div>
+                  <div class="desktop-button desktop-medium">Medium</div>
+                  <div class="desktop-button desktop-hard">Hard</div>                  
                 </div>
                 <div class="divider"></div>
                 <div class="desktop-mode">
                   <div>Mode: </div>
-                  <div class="desktop-timed">Timed (60s)</div>
-                  <div class="desktop-passage">Passage</div>
+                  <div class="desktop-button desktop-timed active">Timed (60s)</div>
+                  <div class="desktop-button desktop-passage">Passage</div>
                 </div>
               </div>
             </div>
