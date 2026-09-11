@@ -177,11 +177,13 @@
       display: flex;
       justify-content: space-around;
       width: 100%;
+      pointer-events: none;
     }
 
     .outer-difficulty-list, .outer-mode-list {
       display: flex;
       flex: 1;
+      pointer-events: all;
     }
 
     .outer-mode-list {
@@ -695,6 +697,10 @@
 
       .passage-container {
         top: calc(6rem - var(--line-skip-padding));
+      }
+
+      .outer-difficulty-list {
+        pointer-events: none;
       }
     }
 

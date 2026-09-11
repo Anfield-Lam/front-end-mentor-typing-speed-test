@@ -402,4 +402,30 @@ document.addEventListener("DOMContentLoaded", () => {
 			location.reload();
 		});
 	});
+
+	const desktopButtonLeft = document.querySelectorAll(".desktop-difficulty .desktop-button")
+	const desktopButtonRight = document.querySelectorAll(".desktop-mode .desktop-button")
+
+	desktopButtonLeft.forEach(button => {
+		button.addEventListener("click", () => {
+			if (!testStarted) {
+				desktopButtonLeft.forEach((item) => {
+					item.classList.remove("active")
+				})
+				button.classList.add("active")
+			}
+		})
+	})
+
+	desktopButtonRight.forEach(button => {
+		button.addEventListener("click", () => {
+			if (!testStarted) {
+				desktopButtonRight.forEach((item) => {
+					item.classList.remove("active")
+				})
+				button.classList.add("active")
+			}
+		})
+	})
+
 });
