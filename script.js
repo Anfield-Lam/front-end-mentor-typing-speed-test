@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		"timed": "Timed (60s)",
 		"passage": "Passage"
 	}
+	let selectedDifficulty = localStorage.getItem("difficulty") || "easy";
+	let selectedMode = localStorage.getItem("mode") || "timed";
 	let randomInt;
 	let remainingTime = 60;
 	let currentTextPassage;
@@ -64,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		})
 		.then(jsonData => {
 			data = jsonData;
-			generatePassage("easy")
+			generatePassage(selectedDifficulty)
 		})
 		.catch(err => console.error("Error loading JSON:", err));
 
@@ -73,13 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	difficultyList.forEach((option) => {
 		option.addEventListener("click", () => {
 			if (!testStarted) {
-				difficultyList.forEach((item) => {
-					item.classList.remove("active")
-				})
-				option.classList.add("active")
 				options.forEach(item => {
 					if (option.classList.contains(item)) {
-						difficultySelected.textContent = shortforms[item];
+						selectDifficulty(item);
 						generatePassage(item);
 					}
 				})
@@ -97,14 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	modeList.forEach((option) => {
 		option.addEventListener("click", () => {
 			if (!testStarted) {
-				modeList.forEach((item) => {
-					item.classList.remove("active")
-				})
-				option.classList.add("active")
 				options.forEach(item => {
 					if (option.classList.contains(item)) {
-						modeListSelected.textContent = shortforms[item];
-						changeMode(item);
+						selectMode(item);
 					}
 				})
 			}
@@ -113,11 +106,33 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
 
 	const Mode = document.querySelector(".time .right")
+	const desktopButtonLeft = document.querySelectorAll(".desktop-difficulty .desktop-button")
+	const desktopButtonRight = document.querySelectorAll(".desktop-mode .desktop-button")
+
+	function selectDifficulty(item) {
+		selectedDifficulty = item;
+		localStorage.setItem("difficulty", item);
+		difficultyList.forEach((option) => option.classList.toggle("active", option.classList.contains(item)));
+		desktopButtonLeft.forEach((option) => option.classList.toggle("active", option.classList.contains(`desktop-${item}`)));
+		difficultySelected.textContent = shortforms[item];
+	}
+
+	function selectMode(item) {
+		selectedMode = item;
+		localStorage.setItem("mode", item);
+		modeList.forEach((option) => option.classList.toggle("active", option.classList.contains(item)));
+		desktopButtonRight.forEach((option) => option.classList.toggle("active", option.classList.contains(`desktop-${item}`)));
+		modeListSelected.textContent = shortforms[item];
+		changeMode(item);
+	}
 
 	function changeMode(item) {
 		if (item === "timed") Mode.textContent = `0:${remainingTime}`;
 		else Mode.textContent = "-";
 	}
+
+	selectDifficulty(selectedDifficulty);
+	selectMode(selectedMode);
 
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -403,16 +418,15 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 
-	const desktopButtonLeft = document.querySelectorAll(".desktop-difficulty .desktop-button")
-	const desktopButtonRight = document.querySelectorAll(".desktop-mode .desktop-button")
-
 	desktopButtonLeft.forEach(button => {
 		button.addEventListener("click", () => {
 			if (!testStarted) {
-				desktopButtonLeft.forEach((item) => {
-					item.classList.remove("active")
+				options.forEach(item => {
+					if (button.classList.contains(`desktop-${item}`)) {
+						selectDifficulty(item);
+						generatePassage(item);
+					}
 				})
-				button.classList.add("active")
 			}
 		})
 	})
@@ -420,10 +434,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	desktopButtonRight.forEach(button => {
 		button.addEventListener("click", () => {
 			if (!testStarted) {
-				desktopButtonRight.forEach((item) => {
-					item.classList.remove("active")
+				options.forEach(item => {
+					if (button.classList.contains(`desktop-${item}`)) selectMode(item);
 				})
-				button.classList.add("active")
 			}
 		})
 	})
