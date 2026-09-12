@@ -437,12 +437,12 @@
     }
 
     .test-result-box-container.active {
-      height: 55%;
+      height: 55rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      padding: 2% 0;
+      padding: 2rem 0;
     }
 
     .box {
@@ -451,23 +451,24 @@
       justify-content: space-between;
       border: 1px solid var(--grey);
       border-radius: 7px;
-      height: 40%;
-      margin: 2% 0;
-      padding: 5% 1.5rem;
+      height: 6rem;
+      margin: 1rem 0;
+      padding: 1rem 1.5rem;
       width: 96%;
       max-width: 25rem; 
     }
 
     .text.top {
+      display: flex;
       font-size: 1.3rem;
       font-weight: 400;
       color: var(--grey);
     }
 
     .text.bottom {
+      display: flex;
       font-size: 1.5rem;
       font-weight: 700;
-      display: flex;
     }
 
     .end-screen-container {
@@ -697,6 +698,10 @@
 
       .passage-container {
         top: calc(6rem - var(--line-skip-padding));
+      }
+
+      .passage-shown {
+        letter-spacing: 0.1rem;
       }
 
       .outer-difficulty-list {
