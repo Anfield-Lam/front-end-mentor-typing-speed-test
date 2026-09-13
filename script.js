@@ -248,6 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const beatThisScoreText = document.querySelector(".beat-this-score-text")
 	const goAgainText = document.querySelector(".go-again-text")
 	const completeTick = document.querySelector(".complete-tick")
+	const Circles = [document.querySelector(".first-circle-1"), document.querySelector(".second-circle-2"), document.querySelector(".complete-circle")]
 	const newPb = document.querySelector(".new-pb")
 	const newScoreText = document.querySelector(".new-score-text")
 	const testResultBoxContainer = document.querySelector(".test-result-box-container")
@@ -272,6 +273,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		testResultBoxContainer.classList.add("active")
 		if (firstTime === true) {
 			completeTick.classList.add("active")
+			Circles.forEach(circle => {
+				circle.classList.add("active")
+			})
 			newPb.classList.remove("active")
 			firstCompleteText.classList.add("active");
 			newScoreText.classList.remove("active");
@@ -284,6 +288,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			confetti.classList.remove("active")
 		} else if (wordsPerMinute > bestwpm) {
 			completeTick.classList.remove("active")
+			Circles.forEach(circle => {
+				circle.classList.remove("active")
+			})
 			newPb.classList.add("active")
 			firstCompleteText.classList.remove("active");
 			newScoreText.classList.add("active")
@@ -296,6 +303,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			confetti.classList.add("active")
 		} else {
 			completeTick.classList.add("active")
+			Circles.forEach(circle => {
+				circle.classList.add("active")
+			})
 			newPb.classList.remove("active")
 			firstCompleteText.classList.remove("active");
 			newScoreText.classList.remove("active")

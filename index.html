@@ -410,6 +410,12 @@
     }
 
     .first-circle-1, .second-circle-2, .complete-circle {
+      display: none;
+      height: 0;
+    }
+
+    .first-circle-1.active, .second-circle-2.active, .complete-circle.active {
+      display: flex;
       height: 100%
     }
 
@@ -564,7 +570,7 @@
     }
 
     .restart-test-container-2 .restart-button.beatThisScore{
-      width: 11.8rem;
+      width: 13.9rem;
     }
 
     .restart-test-container-2 .restart-button img{
