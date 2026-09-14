@@ -15,21 +15,21 @@
 
     @font-face {
       font-family: 'Sora';
-      src: url('fonts/static/Sora-Regular.ttf') format('truetype');
+      src: url('assets/fonts/Sora/static/Sora-Regular.ttf') format('truetype');
       font-style: normal;
       font-weight: 400;
     }
 
     @font-face {
       font-family: 'Sora';
-      src: url('fonts/static/Sora-SemiBold.ttf') format('truetype');
+      src: url('assets/fonts/Sora/static/Sora-SemiBold.ttf') format('truetype');
       font-style: normal;
       font-weight: 600;
     }
 
     @font-face {
       font-family: 'Sora';
-      src: url('fonts/static/Sora-Bold.ttf') format('truetype');
+      src: url('assets/fonts/Sora/static/Sora-Bold.ttf') format('truetype');
       font-style: normal;
       font-weight: 700;
     }
@@ -216,7 +216,7 @@
     }
 
     .border-line-container {
-      margin: 1.1rem 0.5rem;
+      margin: 1.3rem 0.5rem;
     }
 
     .border-line {
@@ -236,6 +236,7 @@
       display: flex;
       flex-direction: column;
       height: 80%;
+      position: relative;
       align-items: center;
       justify-content: center;
     }
@@ -295,10 +296,13 @@
 
     .passage-container {
       position: absolute;
+      left: 0;
+      right: 0;
       padding: 0.5rem;
-      top: calc(13.3rem - var(--line-skip-padding));
+      top: calc(3rem - var(--line-skip-padding));
       bottom: 9rem;
       min-height: 0;
+      width: 100%;
       overflow: hidden;
       z-index: 0;
     }
@@ -369,7 +373,6 @@
     }
 
     .item .right {
-      transform: scaleX(1.1);
       font-weight: 600;
       font-size: 1.8rem;
     }
@@ -740,7 +743,7 @@
       }
 
       .passage-container {
-        top: calc(6rem - var(--line-skip-padding));
+        top: calc(1rem - var(--line-skip-padding));
       }
 
       .passage-shown {
