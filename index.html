@@ -90,11 +90,6 @@
       width: 100%;
     }
 
-    .header {
-      height: auto;
-      flex: 0 0 auto;
-    }
-
     .header-container {
       width: 100%;
       display: flex;
@@ -224,7 +219,7 @@
     }
 
     .border-line-container {
-      margin: 1.3rem 0;
+      margin: 1rem 0.5rem;
     }
 
     .border-line {
@@ -244,7 +239,7 @@
       display: flex;
       flex: 1;
       flex-direction: column;
-      height:auto;
+      height: auto;
       position: relative;
       align-items: center;
       justify-content: flex-start;
@@ -258,12 +253,11 @@
       font-size: 2.2rem;
       font-weight: 400;
       color: var(--grey);
-      padding: 0.5rem;
+      padding: 0 0.5rem;
       line-height: 1.4;
     }
 
     .header {
-      height: 25%;
       position: relative;
       background-color: var(--black);
       z-index: 20;
@@ -276,6 +270,7 @@
     }
 
     .start-screen {
+      position: absolute;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -307,16 +302,21 @@
     }
 
     .passage-container {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      z-index: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    .passage-shown {
       position: absolute;
       left: 0;
       right: 0;
       padding: 0.5rem;
-      top: calc(var(--line-skip-padding) * -1);
-      bottom: 9rem;
-      min-height: 0;
-      width: 100%;
-      overflow: hidden;
-      z-index: 0;
+      top: calc(-0.5rem - var(--line-skip-padding));
     }
 
     .blurred {
@@ -735,10 +735,6 @@
         margin: 0;
         padding: 0;
         padding-right: 0.5rem;
-      }
-
-      .border-line-container {
-        margin: 1rem 0.8rem;
       }
 
       .wpm {

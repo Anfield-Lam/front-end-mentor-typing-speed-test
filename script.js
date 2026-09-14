@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function passageChangePosition(num) {
-		lineSkipHeight += 3.1 * num
+		lineSkipHeight += 3.09 * num
 		document.documentElement.style.setProperty("--line-skip-padding", `${lineSkipHeight}rem`);
 	}
 
