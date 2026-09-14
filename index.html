@@ -216,7 +216,7 @@
     }
 
     .border-line-container {
-      margin: 1.3rem 0.5rem;
+      margin: 1.3rem 0;
     }
 
     .border-line {
@@ -251,7 +251,7 @@
     }
 
     .header {
-      height: 20%;
+      height: 25%;
       position: relative;
       background-color: var(--black);
       z-index: 20;
@@ -299,7 +299,7 @@
       left: 0;
       right: 0;
       padding: 0.5rem;
-      top: calc(3rem - var(--line-skip-padding));
+      top: calc(var(--line-skip-padding) * -1);
       bottom: 9rem;
       min-height: 0;
       width: 100%;
@@ -659,8 +659,7 @@
       }
 
       .header {
-        height: 18%;
-        max-height: 5rem;
+        height: 12.5%;
       }
 
       .header-container {
@@ -727,7 +726,7 @@
       }
 
       .border-line-container {
-        margin: 0 0.8rem;
+        margin: 1rem 0.8rem;
       }
 
       .wpm {
@@ -743,7 +742,7 @@
       }
 
       .passage-container {
-        top: calc(1rem - var(--line-skip-padding));
+        top: calc(var(--line-skip-padding) * -1);
       }
 
       .passage-shown {
